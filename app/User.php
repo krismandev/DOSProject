@@ -46,4 +46,20 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function sales_force()
+    {
+        return $this->hasOne(SalesForce::class,"user_id","id");
+    }
+
+    public function dos()
+    {
+        return $this->hasMany(Dos::class,"user_id","id");
+    }
+
+    public function spv()
+    {
+        return $this->hasOne(Spv::class,"user_id","id");
+    }
+
 }

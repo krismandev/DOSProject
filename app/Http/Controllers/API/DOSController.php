@@ -4,11 +4,15 @@ namespace App\Http\Controllers\API;
 
 use App\Dos;
 use App\Http\Controllers\Controller;
+use App\SalesForce;
+use App\Spv;
+use App\User;
 use App\Utilities\ResponseMessage;
 use App\Utilities\ResponseUtility;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class DOSController extends Controller
@@ -43,11 +47,9 @@ class DOSController extends Controller
                 $path = $request->file("foto")->storeAs("public/foto_dos",$filenameSave);
             }
 
-            $now_date = date("d-m-Y");
-
             $dos = Dos::create([
                 "user_id"=>$user->id,
-                "foto"=>$filenameSave,
+                "foto"=>"public/foto_dos".$filenameSave,
                 "kegiatan"=>$request->kegiatan,
                 "tanggal" => date("Y-m-d"),
                 "waktu"=> $request->waktu,
@@ -68,5 +70,49 @@ class DOSController extends Controller
             return ResponseUtility::makeResponse(null,$message,400);
         }
 
+    }
+
+    public function getTodayDos(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            "limit"=>"required"
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->messages(), 200);
+        }
+
+
+        try {
+            $user = Auth::user();
+            $tanggal = date("Y-m-d");
+            $dos = Dos::where("user_id",$user->id)->where("tanggal",$tanggal)->orderBy("created_at","desc")->paginate($request->limit);
+            $total = $dos->total();
+            $dos = $dos->getCollection();
+
+            foreach ($dos as $item) {
+                $item->user = User::find($item->user_id);
+                $item->foto = env("APP_URL").Storage::url($item->foto);
+                $item->user->sf_data = SalesForce::where("user_id",$item->user_id)->first();
+                unset($item->user_id);
+            }
+
+            $message = ResponseMessage::SUCCESS;
+
+            return ResponseUtility::makeResponse($dos,$message,200,true,$total,$request->limit,ceil($total/$request->limit));
+        } catch (\Exception $e) {
+            $message = $e->getMessage();
+            return ResponseUtility::makeResponse(null,$message,400);
+        }
+
+    }
+
+    public function getDetailDos($id)
+    {
+        $dos = Dos::find($id);
+        $dos->user;
+        $dos->user->sales_force;
+        $message = ResponseMessage::SUCCESS;
+        return ResponseUtility::makeResponse($dos,$message,200);
     }
 }
