@@ -45,7 +45,7 @@ class DOSController extends Controller
                 $extension = $request->file("foto")->getClientOriginalExtension();
                 $filenameSave = $filename.'_'.time().'.'.$extension;
                 $filepath = $request->file('foto')->storeAs(
-                    'foto_dos',
+                    'public/foto_dos',
                     $filenameSave,
                     'local'
                 );
@@ -54,7 +54,7 @@ class DOSController extends Controller
 
             $dos = Dos::create([
                 "user_id"=>$user->id,
-                "foto"=>$filepath,
+                "foto"=>"foto_dos/".$filenameSave,
                 "kegiatan"=>$request->kegiatan,
                 "tanggal" => date("Y-m-d"),
                 "waktu"=> $request->waktu,
