@@ -44,12 +44,17 @@ class DOSController extends Controller
                 $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
                 $extension = $request->file("foto")->getClientOriginalExtension();
                 $filenameSave = $filename.'_'.time().'.'.$extension;
-                $path = $request->file("foto")->storeAs("public/foto_dos",$filenameSave);
+                $filepath = $request->file('file')->storeAs(
+                    'foto_dos',
+                    $filenameSave,
+                    'local'
+                );
+                // $path = $request->file("foto")->storeAs("public/foto_dos",$filenameSave);
             }
 
             $dos = Dos::create([
                 "user_id"=>$user->id,
-                "foto"=>"foto_dos/".$filenameSave,
+                "foto"=>$filepath,
                 "kegiatan"=>$request->kegiatan,
                 "tanggal" => date("Y-m-d"),
                 "waktu"=> $request->waktu,
