@@ -44,7 +44,7 @@ class DOSController extends Controller
                 $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
                 $extension = $request->file("foto")->getClientOriginalExtension();
                 $filenameSave = $filename.'_'.time().'.'.$extension;
-                $filepath = $request->file('file')->storeAs(
+                $filepath = $request->file('foto')->storeAs(
                     'foto_dos',
                     $filenameSave,
                     'local'
