@@ -41,7 +41,7 @@
                                 <td>{{$item->status_kunjungan}}</td>
                                 <td>{{$item->keterangan_kunjungan}}</td>
                                 <td>{{$item->keterangan_tambahan}}</td>
-                                <td>dssafdgfdsgdfgfd</td>
+                                <td>Y</td>
                                 <td>
                                     <img src="{{asset("storage/".$item->foto)}}" style="width: 120px; height: 80px;">
                                 </td>
