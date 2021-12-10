@@ -89,7 +89,7 @@ class DOSController extends Controller
 
             foreach ($dos as $item) {
                 $item->user = User::find($item->user_id);
-                $item->foto = asset($item->foto);
+                $item->foto = asset("storage/".$item->foto);
                 $item->user->sf_data = SalesForce::where("user_id",$item->user_id)->first();
                 unset($item->user_id);
             }
