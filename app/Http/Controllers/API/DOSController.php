@@ -26,7 +26,7 @@ class DOSController extends Controller
             "long"=>"required",
             "lat"=>"required",
             "odp"=>"required",
-            "status_kunjungan"=>"required|in:BERTEMU, TIDAK BERTEMU",
+            "status_kunjungan"=>"required|in:BERTEMU,TIDAK BERTEMU",
             "keterangan_kunjungan"=>"required|in:SUDAH PAKAI KOMPETITOR,PIKIR2 KEMBALI,RUMAH KOSONG,TIDAK BERPENGHUNI,KEBERATAN DENGAN HARGA,DEAL,SUDAH BERLANGGANAN",
             "keterangan_tambahan"=>"nullable",
             "foto"=>"required|file|image",
