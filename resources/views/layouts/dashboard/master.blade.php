@@ -161,12 +161,11 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Dashboard</h1>
+            <h1 class="m-0 text-dark">@yield("page_title")</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
+              @yield("breadcrumb")
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -233,5 +232,9 @@
 <script src="{{asset('asset_dashboard/dist/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('asset_dashboard/dist/js/demo.js')}}"></script>
+
+<script src="{{asset('asset_dashboard/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+<script src="{{asset('asset_dashboard/plugins/toastr/toastr.min.js')}}"></script>
+@yield("linkfooter")
 </body>
 </html>

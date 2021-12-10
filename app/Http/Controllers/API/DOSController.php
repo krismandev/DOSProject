@@ -27,7 +27,8 @@ class DOSController extends Controller
             "lat"=>"required",
             "odp"=>"required",
             "status_kunjungan"=>"required|in:BERTEMU, TIDAK BERTEMU",
-            "keterangan_kunjungan"=>"required|in:SUDAH PAKAI KOMPETITOR,PIKIR2 KEMBALI,RUMAH KOSONG,TIDAK BERPENGHUNI,KEBERATAN DENGAN HARGA,DEAL,SUDAH BERLANGGANAN",
+            "keterangan_kunjungan"=>"required|in:SUDAH PAKAI KOMPETITOR,PIKIR2 KEMBALI,RUMAH KOSONG,TIDAK BERPENGHUNI
+            ,KEBERATAN DENGAN HARGA,DEAL,SUDAH BERLANGGANAN",
             "keterangan_tambahan"=>"nullable",
             "foto"=>"required|file|image",
         ]);
@@ -77,21 +78,13 @@ class DOSController extends Controller
 
     }
 
-    public function getTodayDos(Request $request)
+    public function getTodayDos()
     {
-        $validator = Validator::make($request->all(), [
-            "limit"=>"required"
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json($validator->messages(), 200);
-        }
-
 
         try {
             $user = Auth::user();
             $tanggal = date("Y-m-d");
-            $dos = Dos::where("user_id",$user->id)->where("tanggal",$tanggal)->orderBy("created_at","desc")->paginate($request->limit);
+            $dos = Dos::where("user_id",$user->id)->where("tanggal",$tanggal)->orderBy("created_at","desc")->paginate(10);
             $total = $dos->total();
             $dos = $dos->getCollection();
 
@@ -101,10 +94,8 @@ class DOSController extends Controller
                 $item->user->sf_data = SalesForce::where("user_id",$item->user_id)->first();
                 unset($item->user_id);
             }
-
             $message = ResponseMessage::SUCCESS;
-
-            return ResponseUtility::makeResponse($dos,$message,200,true,$total,$request->limit,ceil($total/$request->limit));
+            return ResponseUtility::makeResponse($dos,$message,200,true,$total,10,ceil($total/10));
         } catch (\Exception $e) {
             $message = $e->getMessage();
             return ResponseUtility::makeResponse(null,$message,400);

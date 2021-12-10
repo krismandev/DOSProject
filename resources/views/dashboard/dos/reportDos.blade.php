@@ -8,9 +8,9 @@
           <h3 class="card-title">Bordered Table</h3>
         </div>
         <!-- /.card-header -->
-        <div class="card-body">
+        <div class="card-body table-responsive p-0">
             <div class="table-responsive">
-                <table class="table table-bordered" style="overflow-x: scroll;">
+                <table class="table table-bordered text-nowrap table-hover" style="overflow-x: scroll;">
                     <thead>
                       <tr>
                         <th>Tanggal</th>
@@ -19,7 +19,7 @@
                         <th>Produk</th>
                         <th>KKontak SF</th>
                         <th>Tikor</th>
-                        <th width="30%">ODP</th>
+                        <th>ODP</th>
                         <th>Status Kunjungan</th>
                         <th>Keterangan Kunjungan</th>
                         <th>Keterangan Tambahan</th>
@@ -31,7 +31,7 @@
                     <tbody>
                         @foreach ($dos as $item)
                             <tr>
-                                <td>{{$item->tanggal}}</td>
+                                <td>{{date('d-m-Y',strtotime($item->tanggal))}}</td>
                                 <td>{{$item->kegiatan}}</td>
                                 <td>{{$item->waktu}}</td>
                                 <td>{{$item->produk}}</td>
