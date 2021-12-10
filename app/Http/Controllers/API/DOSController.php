@@ -21,7 +21,7 @@ class DOSController extends Controller
     {
         $validator = Validator::make($request->all(), [
             "kegiatan"=>"required|in:D2D,OC,OT",
-            "waktu"=>"required|in:09.00 - 12.00, 12.00 - 16.00, 16.00 - 19.00",
+            "waktu"=>"required|in:09.00 - 12.00,12.00 - 16.00,16.00 - 19.00",
             "produk"=>"required|in:INDIHOME,OBIT",
             "long"=>"required",
             "lat"=>"required",
