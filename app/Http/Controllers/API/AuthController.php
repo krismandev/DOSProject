@@ -31,4 +31,12 @@ class AuthController extends Controller
         }
 
     }
+
+    public function logout()
+    {
+        JWTAuth::invalidate(JWTAuth::getToken());
+
+        $message = ResponseMessage::SUCCESS;
+        return ResponseUtility::makeResponse(null,$message,200);
+    }
 }

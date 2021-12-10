@@ -24,3 +24,5 @@ Route::post("/lapor_dos","API\DOSController@storeDos")->middleware("jwtAuth");
 
 Route::get("/dos_today","API\DOSController@getTodayDos")->middleware("jwtAuth");
 Route::get("/dos_today/{id}","API\DOSController@getDetailDos")->middleware("jwtAuth");
+
+Route::get("/logout","API\AuthController@logout");
