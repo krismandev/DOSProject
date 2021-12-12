@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSpvsTable extends Migration
+class AddPicIdToSpvs extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateSpvsTable extends Migration
      */
     public function up()
     {
-        Schema::create('spvs', function (Blueprint $table) {
-            $table->id();
-            $table->integer("user_id");
-            $table->integer("agency_id")->nullable();
-            $table->timestamps();
+        Schema::table('spvs', function (Blueprint $table) {
+            $table->integer("pic_id")->nullable();
         });
     }
 
@@ -28,6 +25,8 @@ class CreateSpvsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('spvs');
+        Schema::table('spvs', function (Blueprint $table) {
+            //
+        });
     }
 }

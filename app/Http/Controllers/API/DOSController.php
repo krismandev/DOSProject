@@ -83,7 +83,7 @@ class DOSController extends Controller
         try {
             $user = Auth::user();
             $tanggal = date("Y-m-d");
-            $dos = Dos::where("user_id",$user->id)->where("tanggal",$tanggal)->orderBy("created_at","desc")->paginate(10);
+            $dos = Dos::where("user_id",$user->id)->orderBy("created_at","desc")->paginate(10);
             $total = $dos->total();
             $dos = $dos->getCollection();
 

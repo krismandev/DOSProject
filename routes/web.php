@@ -33,3 +33,13 @@ Route::group(['prefix' => 'spv'],function(){
     Route::get('/','SpvController@getSpv')->name('getSpv');
     Route::post('/','SpvController@storeSpv')->name('storeSpv');
 });
+
+Route::group(['prefix' => 'sf'],function(){
+    Route::get('/','SfController@getSf')->name('getSf');
+    Route::post('/','SfController@storeSf')->name('storeSf');
+});
+
+Route::group(['prefix' => 'agencies'],function(){
+    Route::get('/','AgencyController@getAgency')->name('getAgency');
+    Route::post('/','AgencyController@storeAgency')->name('storeAgency');
+});

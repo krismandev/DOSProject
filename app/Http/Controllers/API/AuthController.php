@@ -39,4 +39,18 @@ class AuthController extends Controller
         $message = ResponseMessage::SUCCESS;
         return ResponseUtility::makeResponse(null,$message,200);
     }
+
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            "new_password"=>"required"
+        ]);
+
+        $user = Auth::user();
+        $user->update([
+            "password"=> bcrypt($request->new_password)
+        ]);
+        $message = ResponseMessage::SUCCESS;
+        return ResponseUtility::makeResponse(null,$message,200);
+    }
 }

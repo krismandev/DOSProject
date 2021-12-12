@@ -28,7 +28,7 @@
             <a href="{{route("reportDOS")}}" class="nav-link {{(request()->is('laporan_dos*'))?'active': ''}}">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Report DOS
+                Incoming DOS
               </p>
             </a>
           </li>
@@ -38,6 +38,22 @@
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Supervisor
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route("getSf")}}" class="nav-link {{(request()->is('sf*'))?'active': ''}}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Sales Force
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route("getAgency")}}" class="nav-link {{(request()->is('agencies*'))?'active': ''}}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Agency
               </p>
             </a>
           </li>

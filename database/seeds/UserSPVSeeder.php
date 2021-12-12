@@ -22,7 +22,8 @@ class UserSPVSeeder extends Seeder
 
         Spv::create([
             "user_id"=>$spv1->id,
-            "agency"=>"CV.SAIN ANUGRAH JAYA"
+            "agency_id"=>1,
+            "pic_id"=>2
         ]);
     }
 }

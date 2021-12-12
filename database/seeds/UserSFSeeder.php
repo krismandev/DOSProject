@@ -25,7 +25,6 @@ class UserSFSeeder extends Seeder
             "user_id"=>$sf1->id,
             "hp"=>"082281164684",
             "ktp"=>"240123434324425",
-            "agency"=>"CV.SAIN ANUGRAH JAYA",
             "spv_id"=>1,
             "status"=>"active"
         ]);

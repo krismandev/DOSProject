@@ -12,4 +12,9 @@ class SalesForce extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function spv()
+    {
+        return $this->belongsTo(Spv::class);
+    }
 }
