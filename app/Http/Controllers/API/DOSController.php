@@ -83,7 +83,7 @@ class DOSController extends Controller
         try {
             $user = Auth::user();
             $tanggal = date("Y-m-d");
-            $dos = Dos::where("user_id",$user->id)->orderBy("created_at","desc")->paginate(10);
+            $dos = Dos::where("user_id",$user->id)->orderBy("created_at","desc")->paginate(8);
             $total = $dos->total();
             $dos = $dos->getCollection();
 
@@ -94,7 +94,7 @@ class DOSController extends Controller
                 unset($item->user_id);
             }
             $message = ResponseMessage::SUCCESS;
-            return ResponseUtility::makeResponse($dos,$message,200,true,$total,10,ceil($total/10));
+            return ResponseUtility::makeResponse($dos,$message,200,true,$total,8,ceil($total/8));
         } catch (\Exception $e) {
             $message = $e->getMessage();
             return ResponseUtility::makeResponse(null,$message,400);
