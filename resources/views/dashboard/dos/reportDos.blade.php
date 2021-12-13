@@ -1,5 +1,10 @@
 @extends("layouts.dashboard.master")
 @section("title","Report DOS")
+@section("page_title","Incoming DOS")
+@section("breadcrumb")
+<li class="breadcrumb-item"><a href="{{route("home")}}">Home</a></li>
+<li class="breadcrumb-item active">Incoming DOS</li>
+@endsection
 @section("content")
 <div class="row">
     <div class="col-md-12">
@@ -25,12 +30,13 @@
                         <th>Keterangan Tambahan</th>
                         <th>ID</th>
                         <th>Gambar</th>
+                        <th>Aksi</th>
 
                       </tr>
                     </thead>
                     <tbody>
                         @foreach ($dos as $item)
-                            <tr>
+                            <tr class="baris" id="{{$item->id_dos}}">
                                 <td>{{date('d-m-Y',strtotime($item->tanggal))}}</td>
                                 <td>{{$item->kegiatan}}</td>
                                 <td>{{$item->waktu}}</td>
@@ -41,10 +47,15 @@
                                 <td>{{$item->status_kunjungan}}</td>
                                 <td>{{$item->keterangan_kunjungan}}</td>
                                 <td>{{$item->keterangan_tambahan}}</td>
-                                <td>Y</td>
+                                <td>{{$item->id_dos}}</td>
                                 <td>
                                     <img src="{{asset("storage/".$item->foto)}}" style="width: 120px; height: 80px;">
                                 </td>
+                                <td>
+                                    <a href="" class="btn btn-primary approve" data-dos_id="{{$item->id}}" data-id_dos="{{$item->id_dos}}"> Terima </a>
+                                    <button class="btn btn-danger decline" data-dos_id="{{$item->id}}" data-id_dos="{{$item->id_dos}}"> Tolak </a>
+                                </td>
+
                             </tr>
                         @endforeach
                     </tbody>
@@ -52,18 +63,72 @@
             </div>
         </div>
         <!-- /.card-body -->
-        <div class="card-footer clearfix">
-          <ul class="pagination pagination-sm m-0 float-right">
-            <li class="page-item"><a class="page-link" href="#">«</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">»</a></li>
-          </ul>
-        </div>
       </div>
       <!-- /.card -->
     </div>
     <!-- /.col -->
 </div>
+@endsection
+@section("linkfooter")
+<script>
+  $(document).ready(function () {
+    $(".approve").click(function (e) {
+      e.preventDefault();
+      const dos_id = $(this).data("dos_id");
+        const url = "/laporan_dos/approve/"+dos_id;
+        const id_dos = $(this).data("id_dos");
+        $.ajax({
+          type: "get",
+          url: url,
+          dataType: "json",
+          success: function (response) {
+            if (response.message == "success") {
+                $(document).Toasts('create', {
+                    class: 'bg-success',
+                    title: 'Berhasil',
+                    body: 'laporan diterima'
+                })
+
+                $("#"+id_dos).remove();
+            }
+          }
+        });
+    });
+
+    $(".decline").click(function (e) {
+        e.preventDefault();
+        const dos_id = $(this).data("dos_id");
+        const url = "/laporan_dos/decline/"+dos_id;
+        const id_dos = $(this).data("id_dos");
+        swal({
+            title: "Yakin?",
+            text: "akan menolak laporan ini?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    type: "get",
+                    url: url,
+                    dataType: "json",
+                    success: function (response) {
+                        if (response.message == "success") {
+                            $(document).Toasts('create', {
+                                class: 'bg-danger',
+                                title: 'Ditolak',
+                                body: 'laporan ditolak'
+                            });
+
+                            $("#"+id_dos).remove();
+                        }
+                    }
+                });
+            }
+
+        });
+    });
+  });
+</script>
 @endsection

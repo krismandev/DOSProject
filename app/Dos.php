@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Dos extends Model
 {
-    protected $fillable = ["user_id","foto","kegiatan","tanggal","waktu","product","long","lat","odp","status_kunjungan","keterangan_kunjungan","keterangan_tambahan","status"];
+    protected $fillable = ["user_id","foto","kegiatan","tanggal","waktu","product","long","lat","odp","produk","status_kunjungan","keterangan_kunjungan","keterangan_tambahan","status","id_dos"];
 
     public function user()
     {

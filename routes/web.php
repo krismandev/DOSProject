@@ -28,6 +28,9 @@ Route::post("/login","AuthController@postLogin")->name("postLogin");
 Route::get("/logout","AuthController@logout")->name("logout");
 
 Route::get("/laporan_dos","DOSController@reportDOS")->name("reportDOS");
+Route::get("/laporan_dos/approve/{id}","DOSController@approveDOS")->name("approveDOS");
+Route::get("/laporan_dos/decline/{id}","DOSController@declineDOS")->name("declineDOS");
+
 
 Route::group(['prefix' => 'spv'],function(){
     Route::get('/','SpvController@getSpv')->name('getSpv');

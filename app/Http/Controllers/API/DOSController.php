@@ -52,6 +52,7 @@ class DOSController extends Controller
                 // $path = $request->file("foto")->storeAs("public/foto_dos",$filenameSave);
             }
 
+            $id_dos = date("Ymd")."-".Dos::max("id")."-".$user->kode;
             $dos = Dos::create([
                 "user_id"=>$user->id,
                 "foto"=>"foto_dos/".$filenameSave,
@@ -65,7 +66,8 @@ class DOSController extends Controller
                 "status_kunjungan"=>$request->status_kunjungan,
                 "keterangan_kunjungan"=>$request->keterangan_kunjungan,
                 "keterangan_tambahan"=>$request->keterangan_tambahan ?? null,
-                "status"=>"pending"
+                "status"=>"pending",
+                "id_dos"=>$id_dos
             ]);
 
             $message = ResponseMessage::SUCCESS;
