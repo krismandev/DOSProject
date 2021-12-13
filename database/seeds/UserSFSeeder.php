@@ -15,16 +15,16 @@ class UserSFSeeder extends Seeder
     {
 
         $sf1 = User::create([
-            "name"=>"Budi",
-            "kode"=>"SPBDI01",
+            "name"=>"aNTO",
+            "kode"=>"SPANT02",
             "password"=> bcrypt("zzzzzzzz"),
             "role"=>"sf"
         ]);
 
         SalesForce::create([
             "user_id"=>$sf1->id,
-            "hp"=>"082281164684",
-            "ktp"=>"240123434324425",
+            "hp"=>"082281164685",
+            "ktp"=>"240123434324424",
             "spv_id"=>1,
             "status"=>"active"
         ]);
