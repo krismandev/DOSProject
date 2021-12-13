@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UserSPVSeeder::class);
         $this->call(UserSFSeeder::class);
-        // $this->call(UserAdminSeeder::class);
+        $this->call(UserAdminSeeder::class);
         $this->call(AgencySeeder::class);
         $this->call(UserPicSeeder::class);
     }
