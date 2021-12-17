@@ -26,7 +26,7 @@ class DOSController extends Controller
             "long"=>"required",
             "lat"=>"required",
             "odp"=>"required",
-            "status_kunjungan"=>"required|in:BERTEMU,TIDAK BERTEMU",
+            // "status_kunjungan"=>"required|in:BERTEMU,TIDAK BERTEMU",
             "keterangan_kunjungan"=>"required|in:SUDAH PAKAI KOMPETITOR,PIKIR2 KEMBALI,RUMAH KOSONG,TIDAK BERPENGHUNI,KEBERATAN DENGAN HARGA,DEAL,SUDAH BERLANGGANAN",
             "keterangan_tambahan"=>"nullable",
             "foto"=>"required|file|image",
@@ -35,6 +35,8 @@ class DOSController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->messages(), 200);
         }
+
+
 
         try {
             $user = Auth::user();
@@ -52,6 +54,12 @@ class DOSController extends Controller
                 // $path = $request->file("foto")->storeAs("public/foto_dos",$filenameSave);
             }
 
+            if ($request->keterangan_kunjungan == "RUMAH KOSONG" || $request->keterangan_kunjungan == "TIDAK BERPENGHUNI") {
+                $status_kunjungan = "TIDAK BERTEMU";
+            }else{
+                $status_kunjungan = "BERTEMU";
+            }
+
             $id_dos = date("Ymd")."-".Dos::max("id")."-".$user->kode;
             $dos = Dos::create([
                 "user_id"=>$user->id,
@@ -63,7 +71,7 @@ class DOSController extends Controller
                 "long"=>$request->long,
                 "lat"=>$request->lat,
                 "odp"=>$request->odp,
-                "status_kunjungan"=>$request->status_kunjungan,
+                "status_kunjungan"=>$status_kunjungan,
                 "keterangan_kunjungan"=>$request->keterangan_kunjungan,
                 "keterangan_tambahan"=>$request->keterangan_tambahan ?? null,
                 "status"=>"pending",
