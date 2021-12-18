@@ -9,6 +9,8 @@ use App\Spv;
 use App\User;
 use App\Utilities\ResponseMessage;
 use App\Utilities\ResponseUtility;
+use Image;
+
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,11 +48,22 @@ class DOSController extends Controller
                 $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
                 $extension = $request->file("foto")->getClientOriginalExtension();
                 $filenameSave = $filename.'_'.time().'.'.$extension;
-                $filepath = $request->file('foto')->storeAs(
-                    'public/foto_dos',
-                    $filenameSave,
-                    'local'
-                );
+
+                $filenameTest = time().'.'.$extension;
+
+                $destinationPath = public_path('/storage/foto_dos');
+                $image = $request->file('foto');
+                $img = Image::make($image->path());
+                $img->orientate()->resize(1000, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($destinationPath.'/'.$filenameSave);
+
+
+                // $filepath = $request->file('foto')->storeAs(
+                //     'public/foto_dos',
+                //     $filenameSave,
+                //     'local'
+                // );
                 // $path = $request->file("foto")->storeAs("public/foto_dos",$filenameSave);
             }
 
@@ -99,7 +112,7 @@ class DOSController extends Controller
 
             foreach ($dos as $item) {
                 $item->user = User::find($item->user_id);
-                $item->foto = public_path("storage/".$item->foto);
+                $item->foto = asset("storage/".$item->foto);
                 $item->user->sf_data = SalesForce::where("user_id",$item->user_id)->first();
                 unset($item->user_id);
             }
