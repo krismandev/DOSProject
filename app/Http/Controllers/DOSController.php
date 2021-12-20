@@ -8,9 +8,10 @@ use App\SalesForce;
 use App\Spv;
 
 use App\User;
-use Datatables;
+
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Yajra\DataTables\Facades\DataTables;
 
 class DOSController extends Controller
 {
@@ -69,7 +70,7 @@ class DOSController extends Controller
         // dd($spv);
         $user_sf_ids = SalesForce::where("spv_id",$spv->id)->pluck("user_id");
         $dos = Dos::whereIn("user_id",$user_sf_ids)->whereDate('created_at','>=',$awal)->whereDate('created_at','<=',$akhir)->with("user")->orderBy("created_at","desc");
-        $data = Datatables::of($dos)->toJson();
+        $data = DataTables::of($dos)->toJson();
         // dd($data);
         return $data;
     }
