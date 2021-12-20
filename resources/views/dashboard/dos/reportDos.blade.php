@@ -10,12 +10,12 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Bordered Table</h3>
+          <h3 class="card-title">Jumlah ({{$jumlah}})</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body table-responsive p-0">
             <div class="table-responsive">
-                <table class="table table-bordered text-nowrap table-hover" style="overflow-x: scroll;">
+                <table class="table table-bordered text-nowrap" style="overflow-x: scroll;">
                     <thead>
                       <tr>
                         <th>Tanggal</th>
@@ -49,7 +49,9 @@
                                 <td>{{$item->keterangan_tambahan}}</td>
                                 <td>{{$item->id_dos}}</td>
                                 <td>
-                                    <img src="{{asset("storage/".$item->foto)}}" style="width: 120px; height: 80px;">
+                                    <a href="{{asset("storage/".$item->foto)}}" data-fancybox="gallery">
+                                        <img src="{{asset("storage/".$item->foto)}}" style="width: 120px; height: 80px; object-fit: cover; object-position: center; ">
+                                    </a>
                                 </td>
                                 <td>
                                     <a href="" class="btn btn-primary approve" data-dos_id="{{$item->id}}" data-id_dos="{{$item->id_dos}}"> Terima </a>

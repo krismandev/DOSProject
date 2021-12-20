@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="{{asset('asset_dashboard/plugins/daterangepicker/daterangepicker.css')}}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('asset_dashboard/plugins/summernote/summernote-bs4.css')}}">
+  <link rel="stylesheet" href="{{asset('css/jquery.fancybox.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   @yield("linkheader")
@@ -32,7 +33,7 @@
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  {{-- <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -151,7 +152,7 @@
         </a>
       </li>
     </ul>
-  </nav>
+  </nav> --}}
   <!-- /.navbar -->
 
   @include("layouts.dashboard.sidebar")
@@ -238,6 +239,7 @@
 <script src="{{asset('asset_dashboard/plugins/toastr/toastr.min.js')}}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+<script src="{{asset('js/jquery.fancybox.min.js')}}"></script>
 @yield("linkfooter")
 </body>
 </html>

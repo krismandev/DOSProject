@@ -3,7 +3,7 @@
 @section("page_title","Rekap DOS -  SPV ".$user_spv->name)
 @section("breadcrumb")
 <li class="breadcrumb-item"><a href="{{route("home")}}">Home</a></li>
-<li class="breadcrumb-item">Rekap DOS</li>
+<li class="breadcrumb-item">Data DOS</li>
 <li class="breadcrumb-item">SPV {{$user_spv->name}}</li>
 @endsection
 @section("content")

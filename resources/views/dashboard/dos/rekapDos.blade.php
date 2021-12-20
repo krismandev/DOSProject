@@ -3,7 +3,7 @@
 @section("page_title","Rekap DOS")
 @section("breadcrumb")
 <li class="breadcrumb-item"><a href="{{route("home")}}">Home</a></li>
-<li class="breadcrumb-item active">Rekap DOS</li>
+<li class="breadcrumb-item active">Data DOS</li>
 @endsection
 @section("content")
 <div class="row">
