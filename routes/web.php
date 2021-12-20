@@ -46,3 +46,11 @@ Route::group(['prefix' => 'agencies'],function(){
     Route::get('/','AgencyController@getAgency')->name('getAgency');
     Route::post('/','AgencyController@storeAgency')->name('storeAgency');
 });
+
+Route::group(['prefix' => 'rekap-dos'],function(){
+    Route::get('/','DOSController@getRekapDos')->name('getRekapDos');
+    Route::get('/spv/{id}','DOSController@getRekapDosBySpv')->name('getRekapDosBySpv');
+    Route::get('/spv/{id}/data/{awal}/{akhir}','DOSController@dataRekapDosBySpv')->name('dataRekapDosBySpv');
+    Route::get('/spv/{id}/data/{awal}/{akhir}/export','DOSController@exportDataDos')->name('exportDataDos');
+    // Route::post('/','AgencyController@storeAgency')->name('storeAgency');
+});

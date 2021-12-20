@@ -111,9 +111,11 @@ class DOSController extends Controller
             $dos = $dos->getCollection();
 
             foreach ($dos as $item) {
+                $item->kkontak = $item->user->kode;
                 $item->user = User::find($item->user_id);
                 $item->foto = asset("storage/".$item->foto);
                 $item->user->sf_data = SalesForce::where("user_id",$item->user_id)->first();
+
                 unset($item->user_id);
             }
             $message = ResponseMessage::SUCCESS;

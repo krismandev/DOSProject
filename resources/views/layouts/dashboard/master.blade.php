@@ -237,6 +237,7 @@
 <script src="{{asset('asset_dashboard/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
 <script src="{{asset('asset_dashboard/plugins/toastr/toastr.min.js')}}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
 @yield("linkfooter")
 </body>
 </html>

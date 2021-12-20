@@ -58,6 +58,16 @@
             </a>
           </li>
           @endif
+          @if (auth()->user()->role == "admin" || auth()->user()->role == "pic")
+          <li class="nav-item">
+            <a href="{{route("getRekapDos")}}" class="nav-link {{(request()->is('rekap-dos*'))?'active': ''}}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Rekap DOS
+              </p>
+            </a>
+          </li>
+          @endif
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
