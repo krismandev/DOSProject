@@ -54,3 +54,6 @@ Route::group(['prefix' => 'rekap-dos'],function(){
     Route::get('/spv/{id}/data/{awal}/{akhir}/export','DOSController@exportDataDos')->name('exportDataDos');
     // Route::post('/','AgencyController@storeAgency')->name('storeAgency');
 });
+
+Route::get('/maps','MapsController@getMaps')->name('getMaps');
+

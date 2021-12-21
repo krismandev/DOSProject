@@ -76,6 +76,14 @@
             </a>
           </li>
           @endif
+          <li class="nav-item">
+            <a href="{{route("getMaps")}}" class="nav-link {{(request()->is('rekap-dos*'))?'active': ''}}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Maps
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
