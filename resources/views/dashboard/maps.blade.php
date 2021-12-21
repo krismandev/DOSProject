@@ -87,6 +87,16 @@ function gmpstart(){
         infoWindow.open(map, marker);
       });
     }
+
+    google.maps.event.addListener(map, 'zoom_changed', function () {
+        var maptype = map.getMapTypeId();
+        if (map.getZoom() >= map.mapTypes[maptype].maxZoom) {
+            if (map.getMapTypeId() != google.maps.MapTypeId.HYBRID) {
+                map.setMapTypeId(google.maps.MapTypeId.HYBRID)
+                map.setTilt(0); // disable 45 degree imagery
+            }
+        }
+    });;
 }
 
 // google.maps.event.addDomListener(window, 'load', gmpstart);
