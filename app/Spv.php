@@ -63,4 +63,24 @@ class Spv extends Model
         $jumlah_bertemu = Dos::whereIn("user_id",$user_sf_ids)->where("status_kunjungan","TIDAK BERTEMU")->whereDate("created_at",">=",$awal)->whereDate("created_at","<=",$akhir)->count();
         return $jumlah_bertemu;
     }
+
+    public function jumlahKunjungan($awal,$akhir)
+    {
+        $user_sf_ids = SalesForce::where("spv_id",$this->id)->pluck("user_id");
+        // dd($user_sf_ids);
+        $jumlah_kunjungan = Dos::whereIn("user_id",$user_sf_ids)->whereDate("created_at",">=",$awal)->whereDate("created_at","<=",$akhir)->count();
+        return $jumlah_kunjungan;
+    }
+
+    public function persentase($awal,$akhir)
+    {
+       $jumlah_target = $this->target($awal,$akhir);
+       $jumlah_kunjungan = $this->jumlahKunjungan($awal,$akhir);
+       if ($jumlah_target == 0 || $jumlah_kunjungan == 0) {
+           return 0;
+       }
+       $persentase = $jumlah_kunjungan / $jumlah_target * 100;
+    //    return $persentase;
+       return round($persentase,2);
+    }
 }
