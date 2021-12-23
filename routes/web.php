@@ -57,3 +57,7 @@ Route::group(['prefix' => 'rekap-dos'],function(){
 
 Route::get('/maps','MapsController@getMaps')->name('getMaps');
 
+Route::group(['prefix' => 'dashboard'],function(){
+    Route::get('/dos_per_sales','DashboardDataController@dashDosPerSpv')->name('dashDosPerSpv');
+});
+

@@ -3,16 +3,18 @@
 @section("content")
 <div class="row">
     <div class="col-md-3 col-sm-6 col-12">
-      <div class="info-box">
-        <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
+      <a href="{{route("dashDosPerSpv")}}">
+        <div class="info-box">
+            <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
 
-        <div class="info-box-content">
-          {{-- <span class="info-box-text">Messages</span> --}}
-          <span class="info-box-number">DOS</span>
+            <div class="info-box-content">
+              {{-- <span class="info-box-text">Messages</span> --}}
+              <span class="info-box-number">DOS Per SPV</span>
+            </div>
+            <!-- /.info-box-content -->
         </div>
-        <!-- /.info-box-content -->
-      </div>
-      <!-- /.info-box -->
+          <!-- /.info-box -->
+      </a>
     </div>
     <!-- /.col -->
     <div class="col-md-3 col-sm-6 col-12">

@@ -64,7 +64,7 @@ function gmpstart(){
     <?php
         // Sesuaikan dengan database yang sudah Anda buat diawal
        foreach ($dos as $item) {
-           echo "addMarker($item->lat,$item->long);";
+            echo "addMarker($item->lat,$item->long);";
        }
     ?>
     // Proses membuat marker
@@ -97,6 +97,49 @@ function gmpstart(){
             }
         }
     });;
+
+    //membuat poligon
+    // var coordinateA = new google.maps.LatLng(-1.6032454,103.5174842);
+    // var coordinateB = new google.maps.LatLng(-1.6132726,103.5185685);
+    // var coordinateC = new google.maps.LatLng(-1.614501,103.5201911);
+    // var coordinateD = new google.maps.LatLng(-1.6144993,103.5202124);
+
+    // var coords =
+    // [
+    //     {lat: coordinateA.lat(), lng: coordinateA.lng() },
+    //     {lat: coordinateB.lat(), lng: coordinateB.lng() },
+    //     {lat: coordinateC.lat(), lng: coordinateC.lng() },
+    //     {lat: coordinateD.lat(), lng: coordinateD.lng() }
+    // ];
+
+    // metros = new google.maps.Polygon(
+    // {
+    //     paths: coords,
+    //     strokeColor: "#0000FF",
+    //     strokeOpacity: 0.8,
+    //     strokeWeight: 2,
+    //     fillColor: "#0000FF",
+    //     fillOpacity: 0.26
+    // });
+
+    // metros.setMap(map)
+
+
+
+    //mewarnai area sekitar koorinat
+    // var marker = new google.maps.Marker({
+    //   map: map,
+    //   position: new google.maps.LatLng(-1.6032454,103.5174842),
+    //   title: 'Some location'
+    // });
+
+    // var circle = new google.maps.Circle({
+    //   map: map,
+    //   radius: 16093,    // 10 miles in metres
+    //   fillColor: '#AA0000'
+    // });
+    // circle.bindTo('center', marker, 'position');
+
 }
 
 // google.maps.event.addDomListener(window, 'load', gmpstart);

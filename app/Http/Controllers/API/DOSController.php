@@ -24,7 +24,7 @@ class DOSController extends Controller
         $validator = Validator::make($request->all(), [
             "kegiatan"=>"required|in:D2D,OC,OT",
             "waktu"=>"required|in:09.00 - 12.00,12.00 - 16.00,16.00 - 19.00",
-            "produk"=>"required|in:INDIHOME,OBIT",
+            "produk"=>"required|in:INDIHOME,ORBIT",
             "long"=>"required",
             "lat"=>"required",
             "odp"=>"required",
@@ -132,6 +132,7 @@ class DOSController extends Controller
         $dos = Dos::find($id);
         $dos->user;
         $dos->user->sales_force;
+        $dos->kkontak = $dos->user->kode;
         $message = ResponseMessage::SUCCESS;
         return ResponseUtility::makeResponse($dos,$message,200);
     }
