@@ -59,7 +59,8 @@ class DashboardDataController extends Controller
         $akhir = date("Y-m-d");
 
         $waktu_kunjungans = Dos::distinct()->get("waktu");
-        // dd($waktu);
-        return view("dashboard.data_dashboard.evaluasi_sf",compact(["awal","akhir","waktu_kunjungans"]));
+        $keterangan_kunjungans = Dos::distinct()->get("keterangan_kunjungan");
+        $spv = Spv::join("users","spvs.user_id","=","users.id")->select("spvs.*","users.id as id_user","users.name as name","users.kode as kode","users.role as role")->orderBy("name","asc")->get();
+        return view("dashboard.data_dashboard.evaluasi_sf",compact(["awal","akhir","waktu_kunjungans","spv","keterangan_kunjungans"]));
     }
 }

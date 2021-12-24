@@ -39,7 +39,7 @@ class SalesForce extends Model
     {
         $sf = SalesForce::find($this->id);
         $user_id = $sf->user_id;
-        $jumlah_bertemu = Dos::where("user_id",$user_id)->where("status_kunjungan","BERTEMU")->whereDate("created_at",">=",$awal)->whereDate("created_at","<=",$akhir)->count();
+        $jumlah_bertemu = Dos::where("user_id",$user_id)->where("status_kunjungan","BERTEMU")->where("status","approved")->whereDate("created_at",">=",$awal)->whereDate("created_at","<=",$akhir)->count();
         return $jumlah_bertemu;
     }
 
@@ -47,7 +47,7 @@ class SalesForce extends Model
     {
         $sf = SalesForce::find($this->id);
         $user_id = $sf->user_id;
-        $jumlah_bertemu = Dos::where("user_id",$user_id)->where("status_kunjungan","TIDAK BERTEMU")->whereDate("created_at",">=",$awal)->whereDate("created_at","<=",$akhir)->count();
+        $jumlah_bertemu = Dos::where("user_id",$user_id)->where("status_kunjungan","TIDAK BERTEMU")->where("status","approved")->whereDate("created_at",">=",$awal)->whereDate("created_at","<=",$akhir)->count();
         return $jumlah_bertemu;
     }
 
@@ -56,7 +56,7 @@ class SalesForce extends Model
         $sf = SalesForce::find($this->id);
         $user_id = $sf->user_id;
 
-        $jumlah_kunjungan = Dos::where("user_id",$user_id)->whereDate("created_at",">=",$awal)->whereDate("created_at","<=",$akhir)->count();
+        $jumlah_kunjungan = Dos::where("user_id",$user_id)->where("status","approved")->whereDate("created_at",">=",$awal)->whereDate("created_at","<=",$akhir)->count();
         return $jumlah_kunjungan;
     }
 

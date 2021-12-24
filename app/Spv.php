@@ -51,14 +51,14 @@ class Spv extends Model
     public function jumlahBertemu($awal,$akhir)
     {
         $user_sf_ids = SalesForce::where("spv_id",$this->id)->pluck("user_id");
-        $jumlah_bertemu = Dos::whereIn("user_id",$user_sf_ids)->where("status_kunjungan","BERTEMU")->whereDate("created_at",">=",$awal)->whereDate("created_at","<=",$akhir)->count();
+        $jumlah_bertemu = Dos::whereIn("user_id",$user_sf_ids)->where("status_kunjungan","BERTEMU")->where("status","approved")->whereDate("created_at",">=",$awal)->whereDate("created_at","<=",$akhir)->count();
         return $jumlah_bertemu;
     }
 
     public function jumlahTidakBertemu($awal,$akhir)
     {
         $user_sf_ids = SalesForce::where("spv_id",$this->id)->pluck("user_id");
-        $jumlah_bertemu = Dos::whereIn("user_id",$user_sf_ids)->where("status_kunjungan","TIDAK BERTEMU")->whereDate("created_at",">=",$awal)->whereDate("created_at","<=",$akhir)->count();
+        $jumlah_bertemu = Dos::whereIn("user_id",$user_sf_ids)->where("status_kunjungan","TIDAK BERTEMU")->where("status","approved")->whereDate("created_at",">=",$awal)->whereDate("created_at","<=",$akhir)->count();
         return $jumlah_bertemu;
     }
 
@@ -66,7 +66,7 @@ class Spv extends Model
     {
         $user_sf_ids = SalesForce::where("spv_id",$this->id)->pluck("user_id");
         // dd($user_sf_ids);
-        $jumlah_kunjungan = Dos::whereIn("user_id",$user_sf_ids)->whereDate("created_at",">=",$awal)->whereDate("created_at","<=",$akhir)->count();
+        $jumlah_kunjungan = Dos::whereIn("user_id",$user_sf_ids)->where("status","approved")->whereDate("created_at",">=",$awal)->whereDate("created_at","<=",$akhir)->count();
         return $jumlah_kunjungan;
     }
 
@@ -80,5 +80,12 @@ class Spv extends Model
        $persentase = $jumlah_kunjungan / $jumlah_target * 100;
     //    return $persentase;
        return round($persentase,2);
+    }
+
+    public function jumlahByKeteranganKunjungan($keterangan,$awal,$akhir)
+    {
+        $user_sf_ids = SalesForce::where("spv_id",$this->id)->pluck("user_id");
+        $jumlah = Dos::whereIn("user_id",$user_sf_ids)->where("keterangan_kunjungan",$keterangan)->where("status","approved")->whereDate("created_at",">=",$awal)->whereDate("created_at","<=",$akhir)->count();
+        return $jumlah;
     }
 }
