@@ -33,15 +33,17 @@
     </div>
     <!-- /.col -->
     <div class="col-md-3 col-sm-6 col-12">
-      <div class="info-box">
-        <span class="info-box-icon bg-warning"><i class="far fa-copy"></i></span>
+      <a href="{{route("dashEvaluasiDosSf")}}">
+        <div class="info-box">
+            <span class="info-box-icon bg-warning"><i class="far fa-copy"></i></span>
 
-        <div class="info-box-content">
-          {{-- <span class="info-box-text">Uploads</span> --}}
-          <span class="info-box-number">Evaluasi DOS SF</span>
-        </div>
-        <!-- /.info-box-content -->
-      </div>
+            <div class="info-box-content">
+              {{-- <span class="info-box-text">Uploads</span> --}}
+              <span class="info-box-number">Evaluasi DOS SF</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+      </a>
       <!-- /.info-box -->
     </div>
     <!-- /.col -->

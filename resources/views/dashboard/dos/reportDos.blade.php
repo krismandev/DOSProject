@@ -119,7 +119,7 @@
                         if (response.message == "success") {
                             $(document).Toasts('create', {
                                 class: 'bg-danger',
-                                title: 'Ditolak',
+                                title: 'Berhasil',
                                 body: 'laporan ditolak'
                             });
 

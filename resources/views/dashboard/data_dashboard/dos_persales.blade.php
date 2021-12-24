@@ -12,8 +12,9 @@
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">Supervisor: {{$spv_selected->name}}</h3> <br>
-            <h3 class="card-title">Tanggal Mulai: {{$awal}} | Tanggal Akhir: {{$akhir}}</h3>
-            <button type="submit" class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal">Ubah Tanggal</button>
+            <h3 class="card-title">Tanggal Mulai: {{$awal}}</h3> <br>
+            <h3 class="card-title">Tanggal Akhir: {{$akhir}}</h3>
+            <button type="submit" class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal">Atur Filter</button>
 
           </div>
           {{-- <div class="card-tools">

@@ -51,7 +51,6 @@ class Spv extends Model
     public function jumlahBertemu($awal,$akhir)
     {
         $user_sf_ids = SalesForce::where("spv_id",$this->id)->pluck("user_id");
-        // dd($user_sf_ids);
         $jumlah_bertemu = Dos::whereIn("user_id",$user_sf_ids)->where("status_kunjungan","BERTEMU")->whereDate("created_at",">=",$awal)->whereDate("created_at","<=",$akhir)->count();
         return $jumlah_bertemu;
     }
@@ -59,7 +58,6 @@ class Spv extends Model
     public function jumlahTidakBertemu($awal,$akhir)
     {
         $user_sf_ids = SalesForce::where("spv_id",$this->id)->pluck("user_id");
-        // dd($user_sf_ids);
         $jumlah_bertemu = Dos::whereIn("user_id",$user_sf_ids)->where("status_kunjungan","TIDAK BERTEMU")->whereDate("created_at",">=",$awal)->whereDate("created_at","<=",$akhir)->count();
         return $jumlah_bertemu;
     }

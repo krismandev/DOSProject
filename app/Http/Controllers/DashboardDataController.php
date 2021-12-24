@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Dos;
 use App\SalesForce;
 use App\Spv;
 use Illuminate\Http\Request;
@@ -50,5 +51,15 @@ class DashboardDataController extends Controller
             ->select("sales_forces.*","users.id as id_user","users.name as name","users.kode as kode","users.role as role")
             ->get();
         return view('dashboard.data_dashboard.dos_persales',compact(["awal","akhir","spv","spv_selected","sales_forces"]));
+    }
+
+    public function dashEvaluasiDosSf()
+    {
+        $awal = date("Y-m-d",strtotime("-90 days"));
+        $akhir = date("Y-m-d");
+
+        $waktu_kunjungans = Dos::distinct()->get("waktu");
+        // dd($waktu);
+        return view("dashboard.data_dashboard.evaluasi_sf",compact(["awal","akhir","waktu_kunjungans"]));
     }
 }
