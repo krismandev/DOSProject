@@ -127,7 +127,7 @@
     <script>
         $(document).Toasts('create', {
             class: 'bg-danger',
-            title: 'Berhasil',
+            title: 'Error',
             body: '{{$message}}'
         })
     </script>

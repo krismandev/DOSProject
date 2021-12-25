@@ -84,6 +84,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{route("getOdp")}}" class="nav-link {{(request()->is('odp*'))?'active': ''}}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Data ODP
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

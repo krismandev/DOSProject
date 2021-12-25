@@ -68,3 +68,8 @@ Route::group(['prefix' => 'dashboard'],function(){
 
 });
 
+Route::group(['prefix' => 'odp'],function(){
+    Route::get('/','OdpController@getOdp')->name('getOdp');
+    Route::post('/','OdpController@importOdp')->name('importOdp');
+});
+
