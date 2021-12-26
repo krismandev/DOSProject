@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\MainImport;
 use App\Imports\OdpImport;
 use App\Odp;
 use Illuminate\Http\Request;
@@ -66,7 +67,9 @@ class OdpController extends Controller
                 'local'
             );
 
-            Excel::import(new OdpImport,public_path('/storage/odp/'.$filenameSave));
+            // Excel::import(new OdpImport,public_path('/storage/odp/'.$filenameSave));
+            $import = new MainImport();
+            $import->import(public_path('/storage/odp/'.$filenameSave));
 
             return redirect()->back()->with("success","Berhasil mengimport data");
         }

@@ -9,7 +9,7 @@ use Maatwebsite\Excel\Concerns\WithCalculatedFormulas;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 use Maatwebsite\Excel\Concerns\WithValidation;
 
-class OdpImport implements ToModel, WithStartRow, WithCalculatedFormulas, WithMultipleSheets
+class OdpImport implements ToModel, WithStartRow, WithCalculatedFormulas
 {
     /**
     * @param array $row
@@ -18,7 +18,7 @@ class OdpImport implements ToModel, WithStartRow, WithCalculatedFormulas, WithMu
     */
     public function model(array $row)
     {
-        if (strpos($row[2],"ODP")) {
+        // if (strpos($row[2],"ODP")) {
             if (!Odp::where("nama_odp",$row[2])->exists()) {
                 return new Odp([
                     "nama_odp"=>$row[2],
@@ -54,17 +54,17 @@ class OdpImport implements ToModel, WithStartRow, WithCalculatedFormulas, WithMu
                     "kendala"=>$row[14],
                     "permintaan"=>$row[15]
                 ]);
-                return $odp;
+                // return $odp;
             }
-        }
+        // }
     }
 
-    public function sheets(): array
-    {
-        return [
-            new FirstSheetImport()
-        ];
-    }
+    // public function sheets(): array
+    // {
+    //     return [
+    //         new FirstSheetImport()
+    //     ];
+    // }
 
     public function startRow(): int
     {

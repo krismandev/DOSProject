@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Spv extends Model
 {
-    protected $fillable = ["user_id","agency_id"];
+    protected $fillable = ["user_id","agency_id","pic_id"];
 
     public function user()
     {

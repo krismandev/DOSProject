@@ -79,6 +79,15 @@
                           @endforeach
                         </select>
                       </div>
+                      <div class="form-group">
+                        <label>PIC</label>
+                        <select class="custom-select" name="pic_id">
+                          <option value="">Pilih PIC</option>
+                          @foreach ($pics as $pic)
+                          <option value="{{$pic->id}}">{{$pic->name}}</option>
+                          @endforeach
+                        </select>
+                      </div>
                     <!-- /.card-body -->
             </div>
             <div class="modal-footer">

@@ -12,18 +12,21 @@ class SpvController extends Controller
     public function getSpv()
     {
         $spvs = User::where("role","spv")->orderBy("name","asc")->get();
+        $pics = User::where("role","pic")->orderBy("name","asc")->get();
         $agencies = Agency::all();
-        return view("dashboard.spv",compact(['spvs','agencies']));
+        // dd($agencies);
+        return view("dashboard.spv",compact(['spvs','agencies','pics']));
     }
 
     public function storeSpv(Request $request)
     {
         $request->validate([
             "name" => "required",
-            "kode" => "required",
+            "kode" => "required|unique:users,kode",
             "agency_id"=>"required"
         ]);
 
+        // dd($request->agency_id);
         $user = User::create([
             "name" => $request->name,
             "kode" => $request->kode,
@@ -33,7 +36,8 @@ class SpvController extends Controller
 
         $spv = Spv::create([
             "user_id"=>$user->id,
-            "agency_id" => $request->agency_id
+            "agency_id" => $request->agency_id,
+            "pic_id" => $request->pic_id,
         ]);
 
         return redirect()->back()->with("success","Berhasil menambah data");
