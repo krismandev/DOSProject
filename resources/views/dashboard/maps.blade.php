@@ -67,8 +67,43 @@ function gmpstart(){
     bounds = new google.maps.LatLngBounds();
     let datajson = JSON.parse({!!json_encode($dos_json)!!});
 
+    let colors = ["green","red","blue","yellow","purple","pink","lighBlue","lightGreen"];
+    // let selectedColor = colors[Math.floor(Math.random()*colors.length)];
+
+    // console.log(selectedColor);
+
+    var lookup = {};
+    var arrSpvId = [];
+
+    for (var item, i = 0; item = datajson[i++];) {
+        var spv_id = item.spv_id;
+
+        if (!(spv_id in lookup)) {
+            lookup[spv_id] = 1;
+            arrSpvId.push(spv_id);
+        }
+    }
+
+    console.log(arrSpvId);
+
+    const objSpvColor = [];
+    for (const key of arrSpvId) {
+        // console.log("key");
+        // console.log(key);
+        // objSpvColor[key] = colors[Math.floor(Math.random()*colors.length)];
+        let newColor = {
+            spvId: key,
+            color: colors[Math.floor(Math.random()*colors.length)]
+        }
+
+        objSpvColor.push(newColor);
+    }
+
+    console.log(objSpvColor);
+
     // Pengambilan data dari database MySQL
     datajson.forEach(element => {
+
         addMarker(element.lat,element.long,element);
     });
     // Proses membuat marker
@@ -89,12 +124,19 @@ function gmpstart(){
 }
 
     function addMarker(lat, lng,info){
+        let selectedColor;
+        objSpvColor.forEach(element => {
+            if (element.spvId == info.spv_id) {
+                selectedColor = element.color;
+            }
+        });
+
         location = new google.maps.LatLng(lat, lng);
         bounds.extend(location);
         marker = new google.maps.Marker({
             map: map,
             position: location,
-            icon: pinSymbol("green")
+            icon: pinSymbol(selectedColor)
         });
         // http://maps.google.com/mapfiles/ms/icons/green-dot.png
         map.fitBounds(bounds);

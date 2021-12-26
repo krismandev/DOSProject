@@ -14,7 +14,10 @@ class MapsController extends Controller
         $dos = Dos::all();
         foreach ($dos as $item) {
             $item->kkontak = $item->user->kode;
+            $item->spv_id = $item->user->sales_force->spv->id;
+            $item->spv = $item->user->sales_force->spv;
         }
+        // dd($dos);
         $dos_json = $dos->toJson();
         $odp = Odp::where("lat","!=",null)->where("lat","!=",null)->where("lat","!=","#NAME?")->where("long","!=","#NAME?")->get();
         foreach ($odp as $item) {
