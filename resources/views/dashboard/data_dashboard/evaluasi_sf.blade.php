@@ -28,6 +28,18 @@
 
 </style>
 
+<div class="row mb-2">
+
+            <div class="col-md-6">
+                <h3 class="card-title">Tanggal Mulai: {{$awal}}</h3> <br>
+                <h3 class="card-title">Tanggal Akhir: {{$akhir}}</h3>
+            </div>
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal">Atur Filter</button>
+            </div>
+
+</div>
+
 <div class="row">
     <div class="col-md-7">
       <div class="card">
@@ -271,6 +283,55 @@
     <!-- /.col -->
   </div>
 
+
+  <div class="row">
+    <!-- /.col -->
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Detail Hasil DOS Per SF</h3> <br>
+
+            <div class="col-lg-6">
+                <label for="name">Pilih Supervisor</label>
+                <select name="spv_id_filter">
+                    <option selected>Pilih Supervisor</option>
+                    @foreach ($spv as $item)
+                        <option value="{{$item->id}}">{{$item->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body table-responsive p-0">
+          <div class="table-responsive">
+            <table class="table table-bordered text-nowrap">
+                <thead>
+                  <tr>
+                    <th style="width: 10px; background-color: #ffb13d;">NAMA SF</th>
+                    <th style="background-color: #ffb13d;">KKONTAK SF</th>
+                    <th style="background-color: #804f01;">BERTEMU</th>
+                    <th style="background-color: #804f01;">TIDAK BERTEMU</th>
+                    <th style="background-color: #f76da8;">TIDAK BERMINAT</th>
+                    <th style="background-color: #f76da8;">SUDAH PAKAI KOMPETITOR</th>
+                    <th style="background-color: #f76da8;">PIKIR2 KEMBALI</th>
+                    <th style="background-color: #f76da8;">KEBERATAN DENGAN HARGA</th>
+                    <th style="background-color: #f76da8;">DEAL</th>
+                  </tr>
+                </thead>
+                <tbody id="tbody_detail_dos">
+
+                </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+      <!-- /.card -->
+    </div>
+    <!-- /.col -->
+  </div>
+
 <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -281,7 +342,7 @@
                 </button>
               </div>
             <div class="modal-body">
-                <form role="form" method="GET" action="{{route('dashDosPerSalesFiltered')}}">
+                <form role="form" method="GET" action="{{route('dashEvaluasiDosSfFiltered')}}">
                     @csrf
                     <div class="form-group">
                         <label for="name">Tanggal Mulai</label>
@@ -315,20 +376,38 @@
     </script>
 @endif
 <script type="text/javascript">
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000
-        });
+    $(document).ready(function () {
+        $("select[name='spv_id_filter']").change(function (e) {
+            e.preventDefault();
+            let spv_id = $(this).val();
+            let url = "/dashboard/evaluasidossf/detail_hasil/filterspv/"+spv_id;
+            $.ajax({
+                type: "get",
+                url: url,
+                data: {awal: "{{$awal}}", akhir: "{{$akhir}}"},
+                dataType: "json",
+                success: function (response) {
+                    console.log(response);
+                    $(".row_detail_dos").remove();
+                    $.each(response, function (i, v) {
+                        let row = '';
+                        row += '<tr class="text-center row_detail_dos">';
+                          row += `<td> ${v.name} </td>`
+                          row += `<td> ${v.kode} </td>`
+                          row += `<td style="background-color: #804f01; color: white;"> ${v.bertemu} </td>`
+                          row += `<td style="background-color: #804f01; color: white;"> ${v.tidak_bertemu} </td>`
+                          row += `<td> ${v.tidak_berminat} </td>`
+                          row += `<td> ${v.sudah_pakai_kompetitor} </td>`
+                          row += `<td> ${v.pikir2_kembali} </td>`
+                          row += `<td> ${v.keberatan_dengan_harga} </td>`
+                          row += `<td> ${v.deal} </td>`
+                        row += '</tr>'
 
-        function showAlertSuccess(message) {
-            $('.swalDefaultSuccess').click(function() {
-                Toast.fire({
-                    icon: 'success',
-                    title: message
-                })
+                        $("#tbody_detail_dos").append(row);
+                    });
+                }
             });
-        }
+        });
+    });
 </script>
 @endsection

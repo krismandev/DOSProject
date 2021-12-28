@@ -65,6 +65,8 @@ Route::group(['prefix' => 'dashboard'],function(){
     Route::get('/dos_per_sales/filter','DashboardDataController@dashDosPerSalesFiltered')->name('dashDosPerSalesFiltered');
 
     Route::get('/evaluasidossf','DashboardDataController@dashEvaluasiDosSf')->name('dashEvaluasiDosSf');
+    Route::get('/evaluasidossf/filter','DashboardDataController@dashEvaluasiDosSfFiltered')->name('dashEvaluasiDosSfFiltered');
+    Route::get('/evaluasidossf/detail_hasil/filterspv/{spv_id}','DashboardDataController@detailHasilDosPerSpv')->name('detailHasilDosPerSpv');
 
 });
 
