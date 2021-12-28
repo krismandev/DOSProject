@@ -35,6 +35,7 @@ Route::get("/laporan_dos/decline/{id}","DOSController@declineDOS")->name("declin
 Route::group(['prefix' => 'spv'],function(){
     Route::get('/','SpvController@getSpv')->name('getSpv');
     Route::post('/','SpvController@storeSpv')->name('storeSpv');
+    Route::patch('/','SpvController@updateSpv')->name('updateSpv');
 });
 
 Route::group(['prefix' => 'sf'],function(){

@@ -6,6 +6,7 @@ use App\Agency;
 use App\Spv;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SpvController extends Controller
 {
@@ -23,14 +24,15 @@ class SpvController extends Controller
         $request->validate([
             "name" => "required",
             "kode" => "required|unique:users,kode",
-            "agency_id"=>"required"
+            "agency_id"=>"required",
+            "pic_id"=>"required",
+            "hp" => "required"
         ]);
 
-        // dd($request->agency_id);
         $user = User::create([
             "name" => $request->name,
             "kode" => $request->kode,
-            "password" => "12345678",
+            "password" => bcrypt($request->hp),
             "role" => "spv"
         ]);
 
@@ -38,10 +40,42 @@ class SpvController extends Controller
             "user_id"=>$user->id,
             "agency_id" => $request->agency_id,
             "pic_id" => $request->pic_id,
+            "hp"=> $request->hp,
         ]);
 
         return redirect()->back()->with("success","Berhasil menambah data");
+    }
 
+    public function updateSpv(Request $request)
+    {
+        $request->validate([
+            "name" => "required",
+            "user_id" => "required",
+            "kode" => "required",
+            "agency_id"=>"required",
+            "pic_id"=>"required",
+            "hp" => "required"
+        ]);
 
+        DB::beginTransaction();
+        try {
+            $user = User::find($request->user_id);
+            $spv = $user->spv;
+            $user->update([
+                "name"=>$request->name,
+                "kode"=>$request->kode
+            ]);
+
+            $spv->update([
+                "agency_id" => $request->agency_id,
+                "pic_id" => $request->pic_id,
+                "hp"=>$request->hp
+            ]);
+            DB::commit();
+            return redirect()->back()->with("success","Berhasil memperbarui data");
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with("error",$e->getMessage());
+        }
     }
 }

@@ -6,11 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Spv extends Model
 {
-    protected $fillable = ["user_id","agency_id","pic_id"];
+    protected $fillable = ["user_id","agency_id","pic_id","hp"];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function user_pic()
+    {
+        return $this->belongsTo(User::class, 'pic_id', 'id');
     }
 
     public function sales_force()

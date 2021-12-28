@@ -62,6 +62,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasOne(Spv::class,"user_id","id");
     }
 
+    public function spv_pic()
+    {
+        return $this->hasOne(Spv::class,"pic_id","id");
+    }
+
     public function jumlahDosByStatusKunjungan($status,$awal,$akhir)
     {
         $sum = Dos::where("user_id",$this->id)->where("status","approved")->where("status_kunjungan",$status)
