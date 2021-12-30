@@ -26,7 +26,7 @@ class AddHpToSpvs extends Migration
     public function down()
     {
         Schema::table('spvs', function (Blueprint $table) {
-            $table->string("hp")->nullable();
+
         });
     }
 }
