@@ -17,28 +17,27 @@ class MapsController extends Controller
             $item->spv_id = $item->user->sales_force->spv->id;
             $item->spv = $item->user->sales_force->spv;
         }
-        // dd($dos);
         $dos_json = $dos->toJson();
-        $odp = Odp::where("lat","!=",null)->where("lat","!=",null)->where("lat","!=","#NAME?")->where("long","!=","#NAME?")->get();
+        $odp = Odp::where("lat","!=",null)->where("lat","!=",null)->where("lat","!=","#NAME?")->where("long","!=","#NAME?")->where("lat","!=","")->where("long","!=","")->get();
+
         foreach ($odp as $item) {
-            // $item->lat = substr_replace($item->lat, "", -1);
-            // $item->long = substr_replace($item->long, "", -1);
-            // dd($item->lat);
+            $tanggal_go_live = strtotime($item->tanggal_go_live);
+            $tanggal_sekarang = strtotime(date("Y-m-d"));
 
-            // $lat_awal = $item->lat;
-            // $lat_target = '&deg';
-            // $lat_ganti = [''];
-            // $item->lat = Str::replaceArray($lat_target,$lat_ganti,$lat_awal);
+            $dateDiff = $tanggal_sekarang - $tanggal_go_live;
 
-            // $new_lat = str_replace(chr(248),"",$item->lat);
-            // dd($new_lat);
-
-            $item->lat = preg_replace('/[^(\x20-\x7F)\x0A\x0D]*/','', $item->lat);
-            $item->long = preg_replace('/[^(\x20-\x7F)\x0A\x0D]*/','', $item->long);
-            // $arr_lat = str_split($item->lat,1);
-            // dd($arr_lat);
+            $bulan = ceil($dateDiff/(60*60*24*30));
+            $item->umur_dalam_bulan = $bulan;
+            // dd($bulan);
+            if ($bulan <= 3) {
+                $item->keterangan_umur = "Kurang dari 3 bulan";
+            }elseif ($bulan >= 4 && $bulan <= 6) {
+                $item->keterangan_umur = "4 sampai 6 bulan";
+            }else{
+                $item->keterangan_umur = "Lebih dari 1 tahun";
+            }
         }
-        // dd($odp);
-        return view("dashboard.maps",compact(["dos","odp","dos_json"]));
+        $odp_json = $odp->toJson();
+        return view("dashboard.maps",compact(["dos","odp","dos_json","odp_json"]));
     }
 }

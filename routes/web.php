@@ -41,6 +41,7 @@ Route::group(['prefix' => 'spv'],function(){
 Route::group(['prefix' => 'sf'],function(){
     Route::get('/','SfController@getSf')->name('getSf');
     Route::post('/','SfController@storeSf')->name('storeSf');
+    Route::patch('/','SfController@updateSf')->name('updateSf');
 });
 
 Route::group(['prefix' => 'agencies'],function(){

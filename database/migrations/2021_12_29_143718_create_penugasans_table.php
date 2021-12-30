@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddHpToSpvs extends Migration
+class CreatePenugasansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddHpToSpvs extends Migration
      */
     public function up()
     {
-        Schema::table('spvs', function (Blueprint $table) {
-            $table->string("hp")->nullable();
+        Schema::create('penugasans', function (Blueprint $table) {
+            $table->id();
+            $table->integer("spv_id");
+            $table->timestamps();
         });
     }
 
@@ -25,8 +27,6 @@ class AddHpToSpvs extends Migration
      */
     public function down()
     {
-        Schema::table('spvs', function (Blueprint $table) {
-            $table->string("hp")->nullable();
-        });
+        Schema::dropIfExists('penugasans');
     }
 }

@@ -21,7 +21,7 @@ class CreateOdpsTable extends Migration
             $table->string("long")->nullable();
             $table->string("alamat")->nullable();
             $table->string("merk_olt")->nullable();
-            $table->string("tanggal_go_live")->nullable();
+            $table->date("tanggal_go_live")->nullable();
             $table->string("project")->nullable();
             $table->string("id_valins")->nullable();
             $table->string("label_barcode_odp")->nullable();

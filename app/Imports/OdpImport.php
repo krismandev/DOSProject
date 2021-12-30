@@ -20,15 +20,16 @@ class OdpImport implements ToModel, WithStartRow, WithCalculatedFormulas
     {
         // if (strpos($row[2],"ODP")) {
             if (!Odp::where("nama_odp",$row[2])->exists()) {
+                $date = intval($row[8]);
                 return new Odp([
                     "nama_odp"=>$row[2],
                     "sto"=>$row[3],
-                    "lat"=>$row[4],
-                    "long"=>$row[5],
-                    "long"=>$row[5],
+                    // "lat"=>$row[4],
+                    "lat"=>preg_replace('/[^(\x20-\x7F)\x0A\x0D]*/','', $row[4]),
+                    "long"=>preg_replace('/[^(\x20-\x7F)\x0A\x0D]*/','', $row[5]),
                     "alamat"=>$row[6],
                     "merk_olt"=>$row[7],
-                    "tanggal_go_live"=>$row[8],
+                    "tanggal_go_live"=> \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($date),
                     "project"=>$row[10],
                     "id_valins"=>$row[11],
                     "label_barcode_odp"=>$row[12],
@@ -38,15 +39,17 @@ class OdpImport implements ToModel, WithStartRow, WithCalculatedFormulas
                 ]);
             }else{
                 $odp = Odp::where("nama_odp",$row[2])->first();
+
+                $date = intval($row[8]);
                 $odp->update([
                     "nama_odp"=>$row[2],
                     "sto"=>$row[3],
-                    "lat"=>$row[4],
-                    "long"=>$row[5],
-                    "long"=>$row[5],
+                    // "lat"=>$row[4],
+                    "lat"=>preg_replace('/[^(\x20-\x7F)\x0A\x0D]*/','', $row[4]),
+                    "long"=>preg_replace('/[^(\x20-\x7F)\x0A\x0D]*/','', $row[5]),
                     "alamat"=>$row[6],
                     "merk_olt"=>$row[7],
-                    "tanggal_go_live"=>$row[8],
+                    "tanggal_go_live"=> \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($date),
                     "project"=>$row[10],
                     "id_valins"=>$row[11],
                     "label_barcode_odp"=>$row[12],
@@ -69,6 +72,10 @@ class OdpImport implements ToModel, WithStartRow, WithCalculatedFormulas
     public function startRow(): int
     {
         return 2;
+    }
+
+    public function beliefmedia_valid_lat($latitude) {
+        return preg_match('/^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$/', $latitude);
     }
 
     // public function rules(): array
