@@ -52,6 +52,9 @@ class DOSController extends Controller
                 $filenameTest = time().'.'.$extension;
 
                 $destinationPath = public_path('/storage/foto_dos');
+                if (!file_exists(public_path($destinationPath))) {
+                    mkdir(public_path($destinationPath), 755, false);
+                }
                 $image = $request->file('foto');
                 $img = Image::make($image->path());
                 $img->orientate()->resize(1000, null, function ($constraint) {
