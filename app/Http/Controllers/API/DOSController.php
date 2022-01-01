@@ -53,7 +53,7 @@ class DOSController extends Controller
 
                 $destinationPath = public_path('/storage/foto_dos');
                 if (!file_exists($destinationPath)) {
-                    mkdir(public_path($destinationPath), 755, false);
+                    mkdir($destinationPath, 755, false);
                 }
                 $image = $request->file('foto');
                 $img = Image::make($image->path());
