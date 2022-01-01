@@ -52,7 +52,7 @@ class DOSController extends Controller
                 $filenameTest = time().'.'.$extension;
 
                 $destinationPath = public_path('/storage/foto_dos');
-                if (!file_exists(public_path($destinationPath))) {
+                if (!file_exists($destinationPath)) {
                     mkdir(public_path($destinationPath), 755, false);
                 }
                 $image = $request->file('foto');
