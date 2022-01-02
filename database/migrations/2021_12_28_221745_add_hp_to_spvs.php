@@ -25,8 +25,12 @@ class AddHpToSpvs extends Migration
      */
     public function down()
     {
-        Schema::table('spvs', function (Blueprint $table) {
-
-        });
+        if (Schema::hasColumn('spvs', 'hp'))
+        {
+            Schema::table('spvs', function (Blueprint $table)
+            {
+                $table->dropColumn('hp');
+            });
+        }
     }
 }
