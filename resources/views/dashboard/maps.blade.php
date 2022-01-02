@@ -108,11 +108,11 @@ function gmpstart(){
         addMarker(element.lat,element.long,element);
     });
 
-    console.log(datajson);
-    console.log(odpjson);
-    odpjson.forEach(element => {
-        addMarkerOdp(element.lat,element.long,element);
-    });
+    // console.log(datajson);
+    // console.log(odpjson);
+    // odpjson.forEach(element => {
+    //     addMarkerOdp(element.lat,element.long,element);
+    // });
 
 
     // Proses membuat marker
