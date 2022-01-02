@@ -11,7 +11,7 @@ class MapsController extends Controller
 {
     public function getMaps()
     {
-        $dos = Dos::where("status","approved")->get;
+        $dos = Dos::where("status","approved")->get();
         foreach ($dos as $item) {
             $item->kkontak = $item->user->kode;
             $item->spv_id = $item->user->sales_force->spv->id;
