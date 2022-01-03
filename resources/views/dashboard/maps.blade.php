@@ -41,7 +41,7 @@
 
 @endsection
 @section("linkfooter")
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnJdVlDZl-Wd39pXkjf3reZbYV2ZTzHKo&callback=gmpstart" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnCWk0-BFFFMENVAURDIyop3XCIj0bD4U&callback=gmpstart" async defer></script>
 
 <script type="text/javascript">
 let map;
