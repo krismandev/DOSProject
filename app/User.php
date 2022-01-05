@@ -64,7 +64,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function spv_pic()
     {
-        return $this->hasOne(Spv::class,"pic_id","id");
+        return $this->hasMany(Spv::class,"pic_id","id");
     }
 
     public function jumlahDosByStatusKunjungan($status,$awal,$akhir)

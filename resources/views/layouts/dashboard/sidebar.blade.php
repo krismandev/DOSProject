@@ -52,6 +52,14 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a href="{{route("getPic")}}" class="nav-link {{(request()->is('pic*'))?'active': ''}}">
+                <i class="nav-icon fa fa-user"></i>
+                <p>
+                    PIC
+                </p>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="{{route("getSf")}}" class="nav-link {{(request()->is('sf*'))?'active': ''}}">
                 <i class="nav-icon fa fa-users"></i>
                 <p>

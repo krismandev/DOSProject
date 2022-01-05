@@ -1,5 +1,5 @@
 @extends("layouts.dashboard.master")
-@section("page_title","Dashboard DOS / SPV")
+@section("page_title","Dashboard DOS Per SPV")
 @section("breadcrumb")
 <li class="breadcrumb-item"><a href="{{route("home")}}">Home</a></li>
 <li class="breadcrumb-item">Dashboard DOS</li>
@@ -65,11 +65,11 @@
                     {{$item->jumlahKunjungan($awal,$akhir)}}
                  </td>
                  @if ($item->persentase($awal,$akhir) < 75)
-                 <td style="background-color: red;">
+                 <td style="background-color: red; color: white;">
                     {{$item->persentase($awal,$akhir)}}%
                  </td>
                  @else
-                 <td style="background-color: green;">
+                 <td style="background-color: green; color: white;">
                     {{$item->persentase($awal,$akhir)}} %
                  </td>
                  @endif

@@ -128,7 +128,8 @@ function gmpstart(){
     function bindInfoWindow(marker, map, infoWindow, html){
         google.maps.event.addListener(marker, 'click', function() {
         infoWindow.setContent(
-            `<p><b>Lat</b> : ${html.lat}</p>`
+            `<p><b>SPV</b> : ${html.spv_name}</p>`
+            +`<p><b>Lat</b> : ${html.lat}</p>`
             + `<p><b>Long</b> : ${html.long}</p>`
             + `<p><b>Kegiatan</b> : ${html.kegiatan}</p>`
             + `<p><b>KKontak</b> : ${html.kkontak}</p>`

@@ -93,4 +93,10 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function(){
         Route::get('/','OdpController@getOdp')->name('getOdp');
         Route::post('/','OdpController@importOdp')->name('importOdp');
     });
+
+    Route::group(['prefix' => 'pic'],function(){
+        Route::get('/','PicController@getPic')->name('getPic');
+        Route::post('/','PicController@storePic')->name('storePic');
+        Route::patch('/','PicController@updatePic')->name('updatePic');
+    });
 });

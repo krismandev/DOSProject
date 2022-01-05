@@ -16,6 +16,7 @@ class MapsController extends Controller
             $item->kkontak = $item->user->kode;
             $item->spv_id = $item->user->sales_force->spv->id;
             $item->spv = $item->user->sales_force->spv;
+            $item->spv_name = $item->user->sales_force->spv->user->name;
         }
         $dos_json = $dos->toJson();
         $odp = Odp::where("lat","!=",null)->where("lat","!=",null)->where("lat","!=","#NAME?")->where("long","!=","#NAME?")->where("lat","!=","")->where("long","!=","")->get();

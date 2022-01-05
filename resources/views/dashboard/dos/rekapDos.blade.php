@@ -23,6 +23,7 @@
               <tr>
                 <th>Nama</th>
                 <th>Kode</th>
+                <th>PIC</th>
                 <th>Agensi</th>
                 <th>Aksi</th>
               </tr>
@@ -32,6 +33,7 @@
                 <tr>
                     <td>{{$user->name}}</td>
                     <td>{{$user->kode}}</td>
+                    <td>{{$user->spv->user_pic->name}}</td>
                     <td>{{$user->spv->agency->name}}</td>
                     <td>
                         <a href="{{route("getRekapDosBySpv",$user->id)}}" class="btn btn-primary">
