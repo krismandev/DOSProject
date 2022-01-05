@@ -20,7 +20,13 @@ class AuthController extends Controller
         $creds = $request->only(['kode','password']);
 
         if (auth()->attempt($creds)) {
-            return redirect()->route("home");
+            if (auth()->user()->role != "sf") {
+                return redirect()->route("home");
+            }else{
+                return redirect()->back()->with("error","Password atau username salah");
+            }
+        }else{
+            return redirect()->back()->with("error","Password atau username salah");
         }
     }
 

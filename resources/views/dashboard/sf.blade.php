@@ -166,45 +166,7 @@
 </div>
 @endsection
 @section("linkfooter")
-@if (session("success"))
-    <script>
-            $(document).Toasts('create', {
-                class: 'bg-success',
-                title: 'Berhasil',
-                body: '{{session("success")}}'
-            })
-    </script>
-@endif
 
-@if (session("error"))
-    <script>
-            $(document).Toasts('create', {
-                class: 'bg-danger',
-                title: 'Error',
-                body: '{{session("error")}}'
-            })
-    </script>
-@endif
-
-@if ($errors->any())
-    @php
-        $message = '';
-    @endphp
-    @foreach ($errors->all() as $error)
-        @php
-            $message .= $error.", ";
-        @endphp
-    @endforeach
-
-    <script>
-        $(document).Toasts('create', {
-            class: 'bg-danger',
-            title: 'Error',
-            body: '{{$message}}'
-        })
-    </script>
-
-@endif
 
 <script>
     $(document).ready(function () {

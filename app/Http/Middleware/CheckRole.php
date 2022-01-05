@@ -18,6 +18,6 @@ class CheckRole
        if (in_array($request->user()->role,$roles)) {
          return $next($request);
        }
-       return redirect()->route('logout');
+       return redirect()->back()->with("error","Anda tidak bisa mengakses halaman tersebut");
      }
 }

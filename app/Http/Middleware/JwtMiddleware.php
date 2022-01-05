@@ -27,7 +27,7 @@ class JwtMiddleware
         } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
             $message = 'invalid token';
         } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
-            $message = 'provide token';
+            $message = $e->getMessage();
         }
 
         return response()->json([

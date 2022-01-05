@@ -66,11 +66,11 @@
                  </td>
                  @if ($item->persentase($awal,$akhir) < 75)
                  <td style="background-color: red;">
-                    {{$item->persentase($awal,$akhir)}}
+                    {{$item->persentase($awal,$akhir)}}%
                  </td>
                  @else
                  <td style="background-color: green;">
-                    {{$item->persentase($awal,$akhir)}}
+                    {{$item->persentase($awal,$akhir)}} %
                  </td>
                  @endif
 
@@ -82,7 +82,6 @@
                     $jumlah_bertemu += $item->jumlahBertemu($awal,$akhir);
                     $jumlah_tidak_bertemu += $item->jumlahTidakBertemu($awal,$akhir);
                     $jumlah_kunjungan += $item->jumlahKunjungan($awal,$akhir);
-
                 @endphp
                 @endforeach
                 <tr>

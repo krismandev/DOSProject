@@ -240,6 +240,46 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
 <script src="{{asset('js/jquery.fancybox.min.js')}}"></script>
+<script src="https://kit.fontawesome.com/ba5890d42b.js" crossorigin="anonymous"></script>
+
+@if (session("success"))
+    <script>
+            $(document).Toasts('create', {
+                class: 'bg-success',
+                title: 'Berhasil',
+                body: '{{session("success")}}'
+            })
+    </script>
+@endif
+@if (session("error"))
+    <script>
+            $(document).Toasts('create', {
+                class: 'bg-danger',
+                title: 'Error',
+                body: '{{session("error")}}'
+            })
+    </script>
+@endif
+
+@if ($errors->any())
+    @php
+        $message = '';
+    @endphp
+    @foreach ($errors->all() as $error)
+        @php
+            $message .= $error.", ";
+        @endphp
+    @endforeach
+
+    <script>
+        $(document).Toasts('create', {
+            class: 'bg-danger',
+            title: 'Error',
+            body: '{{$message}}'
+        })
+    </script>
+
+@endif
 @yield("linkfooter")
 </body>
 </html>

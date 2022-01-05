@@ -88,7 +88,10 @@
                 $(document).Toasts('create', {
                     class: 'bg-success',
                     title: 'Berhasil',
-                    body: 'laporan diterima'
+                    body: 'laporan diterima',
+                    options: {
+                        hideDuration: 10
+                    }
                 })
 
                 $("#"+id_dos).remove();
