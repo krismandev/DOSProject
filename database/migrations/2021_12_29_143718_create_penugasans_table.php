@@ -16,6 +16,11 @@ class CreatePenugasansTable extends Migration
         Schema::create('penugasans', function (Blueprint $table) {
             $table->id();
             $table->integer("spv_id");
+            $table->integer("odc_id");
+            $table->text("odp")->nullable();
+            $table->text("keterangan")->nullable();
+            $table->date("tanggal_mulai")->nullable();
+            $table->date("tanggal_selesai")->nullable();
             $table->timestamps();
         });
     }

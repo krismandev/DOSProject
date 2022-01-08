@@ -68,6 +68,12 @@ Route::group(['middleware' => ['auth','checkRole:pic,admin']], function(){
         // Route::post('/','AgencyController@storeAgency')->name('storeAgency');
     });
 
+    Route::group(['prefix' => 'sales_plan'],function(){
+        Route::get('/','PenugasanController@getPenugasan')->name('getPenugasan');
+        Route::post('/','PenugasanController@storePenugasan')->name('storePenugasan');
+
+    });
+
 });
 
 

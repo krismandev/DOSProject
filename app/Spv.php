@@ -34,6 +34,11 @@ class Spv extends Model
         return $total;
     }
 
+    public function penugasan()
+    {
+        return $this->hasMany(Penugasan::class,"spv_id","id");
+    }
+
     public function target($tanggal_awal, $tanggal_akhir)
     {
         $jumlah_sf = $this->jumlahSf();

@@ -78,6 +78,14 @@
             @endif
             @if (auth()->user()->role == "admin" || auth()->user()->role == "pic")
             <li class="nav-item">
+                <a href="{{route("getPenugasan")}}" class="nav-link {{(request()->is('sales_plan*'))?'active': ''}}">
+                <i class="nav-icon fa fa-database"></i>
+                <p>
+                    Sales Plan
+                </p>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="{{route("getRekapDos")}}" class="nav-link {{(request()->is('rekap-dos*'))?'active': ''}}">
                 <i class="nav-icon fa fa-database"></i>
                 <p>
