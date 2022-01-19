@@ -9,6 +9,7 @@ use App\Spv;
 use App\User;
 use App\Utilities\ResponseMessage;
 use App\Utilities\ResponseUtility;
+use CURLFile;
 use Image;
 
 
@@ -61,6 +62,7 @@ class DOSController extends Controller
                 })->save($destinationPath.'/'.$filenameSave);
 
 
+
                 // $filepath = $request->file('foto')->storeAs(
                 //     'public/foto_dos',
                 //     $filenameSave,
@@ -92,6 +94,25 @@ class DOSController extends Controller
                 "status"=>"pending",
                 "id_dos"=>$id_dos
             ]);
+
+
+            $dataMessage = [
+                "kegiatan"=>$dos->kegiatan,
+                "waktu"=> $dos->waktu,
+                "tanggal"=>$dos->tanggal,
+                "longitude"=>$dos->long,
+                "latitude"=>$dos->lat,
+                "odp"=>$dos->odp,
+                "produk"=>$dos->produk,
+                "kkontak"=>$user->kode,
+                "status_kunjungan"=>$dos->status_kunjungan,
+                "keterangan_kunjungan"=>$dos->keterangan_kunjungan,
+                "keterangan_tambahan"=>$dos->keterangan_tambahan,
+                "path"=>realpath("storage/foto_dos/".$filenameSave)
+            ];
+
+            $this->sendToBot($dataMessage);
+
 
             $message = ResponseMessage::SUCCESS;
             return ResponseUtility::makeResponse($dos,$message,200);
@@ -137,5 +158,40 @@ class DOSController extends Controller
         $dos->kkontak = $dos->user->kode;
         $message = ResponseMessage::SUCCESS;
         return ResponseUtility::makeResponse($dos,$message,200);
+    }
+
+    public function sendToBot($data)
+    {
+        $BOT_TOKEN  = env("BOT_TOKEN");
+        $CHAT_ID = env("GROUP_ID");
+
+        $post_fields = array(
+            'chat_id'   => $CHAT_ID,
+            'photo'     => new CURLFile($data["path"]),
+            'caption' => "Kegiatan: ".$data["kegiatan"]."\n".
+                        "Waktu: ".$data["waktu"]. " \n ".
+                        "Tanggal: ".$data["tanggal"]. " \n ".
+                        "Longitue: ".$data["longitude"]. " \n ".
+                        "Latitude: ".$data["latitude"]. " \n ".
+                        "ODP: ".$data["odp"]. " \n ".
+                        "Produk: ".$data["produk"]. " \n ".
+                        "KKontak: ".$data["kkontak"]. " \n ".
+                        "Status Kunjungan: ".$data["status_kunjungan"]. " \n ".
+                        "Keterangan Kunjungan: ".$data["keterangan_kunjungan"]. " \n ".
+                        "Keterangan Tambahan: ".$data["keterangan_tambahan"]. " \n ",
+            "parse_mode"=>"HTML"
+        );
+
+        $API = "https://api.telegram.org/bot".$BOT_TOKEN."/sendPhoto?chat_id=".$CHAT_ID;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            "Content-Type:multipart/form-data"
+        ));
+        curl_setopt($ch, CURLOPT_URL, $API);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_fields);
+        $result = curl_exec($ch);
+        curl_close($ch);
+        return $result;
     }
 }
