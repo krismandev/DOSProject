@@ -106,3 +106,6 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function(){
         Route::patch('/','PicController@updatePic')->name('updatePic');
     });
 });
+
+Route::get("kirim_bot/{pesan}","BotController@sendMessage")->name("sendMessage");
+Route::get("hook","BotController@hook")->name("hook");

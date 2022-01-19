@@ -263,6 +263,7 @@
 
 @if ($errors->any())
     @php
+        // dd($errors->all());
         $message = '';
     @endphp
     @foreach ($errors->all() as $error)
