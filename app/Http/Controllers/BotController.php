@@ -33,7 +33,7 @@ class BotController extends Controller
         $chatID = $update["message"]["chat"]["id"];
         $message = $update["message"]["text"];
 
-        if (strpos($message, "/start") === 0) {
+        if (strpos($message, "/start") == 0) {
             file_get_contents($apiURL."/sendmessage?chat_id=".$chatID."&text=Haloo, test webhooks dicoffeean.com.&parse_mode=HTML");
         }else{
             file_get_contents($apiURL."/sendmessage?chat_id=".$chatID."&text=Haloo, test webhooks dicoffeean.com.&parse_mode=HTML");
