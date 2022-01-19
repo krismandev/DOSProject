@@ -108,7 +108,7 @@ class DOSController extends Controller
                 "status_kunjungan"=>$dos->status_kunjungan,
                 "keterangan_kunjungan"=>$dos->keterangan_kunjungan,
                 "keterangan_tambahan"=>$dos->keterangan_tambahan,
-                "path"=>realpath("storage/foto_dos/".$filenameSave)
+                "path"=>realpath("public/storage/foto_dos/".$filenameSave)
             ];
 
             $this->sendToBot($dataMessage);
