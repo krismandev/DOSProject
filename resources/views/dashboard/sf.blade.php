@@ -22,6 +22,7 @@
                     <th>KKontak</th>
                     <th>Agensi</th>
                     <th>HP</th>
+                    <th>KTP</th>
                     <th>Supervisor</th>
                     <th>Status</th>
                     <th>Aksi</th>
