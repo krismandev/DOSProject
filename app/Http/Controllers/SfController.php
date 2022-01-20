@@ -12,7 +12,7 @@ class SfController extends Controller
 {
     public function getSf()
     {
-        $sfs = User::where("role","sf")->orderBy("name")->get();
+        $sfs = User::where("role","sf")->orderBy("created_at","desc")->get();
         $spvs = Spv::join("users","spvs.user_id","=","users.id")->select("spvs.*","users.name")->orderBy("name","asc")->get();
         return view('dashboard.sf',compact(["sfs","spvs"]));
     }
