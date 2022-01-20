@@ -175,15 +175,6 @@
 
 @endsection
 @section("linkfooter")
-@if (session("success"))
-    <script>
-            $(document).Toasts('create', {
-                class: 'bg-success',
-                title: 'Berhasil',
-                body: '{{session("success")}}'
-            })
-    </script>
-@endif
 @if (session("error"))
     <script>
             $(document).Toasts('create', {
