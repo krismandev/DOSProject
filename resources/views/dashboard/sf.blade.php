@@ -34,8 +34,8 @@
                     <td>{{$sf->name}}</td>
                     <td>{{$sf->kode}}</td>
                     <td>{{$sf->sales_force->spv->agency->name}}</td>
-                    <td>{{$sf->sales_force->hp}}</td>
-                    <td>{{$sf->sales_force->ktp}}</td>
+                    <td>{{$sf->sales_force->hp ?? "-"}}</td>
+                    <td>{{$sf->sales_force->ktp ?? "-"}}</td>
                     <td>{{$sf->sales_force->spv->user->name}}</td>
                     <td>{{$sf->sales_force->status}}</td>
                     <td>
