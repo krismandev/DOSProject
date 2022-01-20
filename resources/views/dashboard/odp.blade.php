@@ -99,15 +99,7 @@
 </div>
 @endsection
 @section("linkfooter")
-@if (session("success"))
-    <script>
-            $(document).Toasts('create', {
-                class: 'bg-success',
-                title: 'Berhasil',
-                body: '{{session("success")}}'
-            })
-    </script>
-@endif
+
 
 @if ($errors->any())
     @php

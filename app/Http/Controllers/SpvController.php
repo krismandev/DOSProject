@@ -32,7 +32,7 @@ class SpvController extends Controller
         $user = User::create([
             "name" => $request->name,
             "kode" => $request->kode,
-            "password" => bcrypt($request->hp),
+            "password" => $request->kode,
             "role" => "spv"
         ]);
 

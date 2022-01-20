@@ -13,7 +13,7 @@
           {{-- <h3 class="card-title">Responsive Hover </h3> --}}
 
           <div class="card-tools">
-            <button type="button" class="btn btn-primary kembali">Kembali</button>
+
             <button type="submit" class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal">Tambah</button>
           </div>
         </div>
