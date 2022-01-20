@@ -23,7 +23,6 @@ class SfController extends Controller
             "name"=>"required",
             "kode"=>"required|unique:users,kode",
             "spv_id"=>"required",
-            "ktp"=>"required"
         ]);
 
         $user = User::create([
