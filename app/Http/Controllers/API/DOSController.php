@@ -25,10 +25,10 @@ class DOSController extends Controller
         $validator = Validator::make($request->all(), [
             "kegiatan"=>"required|in:D2D,OC,OT",
             "waktu"=>"required|in:09.00 - 12.00,12.00 - 16.00,16.00 - 19.00",
-            "produk"=>"required|in:INDIHOME,ORBIT",
+            "produk"=>"required|in:INDIHOME,ORBIT,HSI",
             "long"=>"required",
             "lat"=>"required",
-            "odp"=>"required",
+            "odp"=>"required_if:produk,==,INDIHOME",
             "keterangan_kunjungan"=>"required|in:SUDAH PAKAI KOMPETITOR,PIKIR2 KEMBALI,RUMAH KOSONG,TIDAK BERPENGHUNI,KEBERATAN DENGAN HARGA,DEAL,SUDAH BERLANGGANAN",
             "keterangan_tambahan"=>"nullable",
             "foto"=>"required|file|image",
@@ -91,7 +91,7 @@ class DOSController extends Controller
                 "status_kunjungan"=>$status_kunjungan,
                 "keterangan_kunjungan"=>$request->keterangan_kunjungan,
                 "keterangan_tambahan"=>$request->keterangan_tambahan ?? null,
-                "status"=>"pending",
+                "status"=>"approved",
                 "id_dos"=>$id_dos
             ]);
 

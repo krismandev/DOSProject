@@ -21,10 +21,11 @@ class DOSController extends Controller
         // dd($spv_ids);
         $user_sf_ids = SalesForce::whereIn("spv_id",$spv_ids)->pluck("user_id");
         // dd($user_sf_ids);
-        $data = Dos::whereIn("user_id",$user_sf_ids)->orderBy("created_at","desc")->where("status","pending");
+        $tanggal = date("Y-m-d");
+        $data = Dos::whereIn("user_id",$user_sf_ids)->orderBy("created_at","desc")->whereDate("created_at","=",$tanggal);
         $jumlah = $data->count();
         $dos = $data->get();
-        return view("dashboard.dos.reportDos",compact(["dos","jumlah"]));
+        return view("dashboard.dos.reportDos",compact(["dos","jumlah","tanggal"]));
     }
 
     public function approveDOS($id){
