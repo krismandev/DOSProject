@@ -30,7 +30,7 @@
                         <th>Keterangan Tambahan</th>
                         <th>ID</th>
                         <th>Gambar</th>
-                        <th>Aksi</th>
+                        {{-- <th>Aksi</th> --}}
 
                       </tr>
                     </thead>
@@ -53,10 +53,10 @@
                                         <img src="{{asset("storage/".$item->foto)}}" style="width: 120px; height: 80px; object-fit: cover; object-position: center; ">
                                     </a>
                                 </td>
-                                <td>
+                                {{-- <td>
                                     <a href="" class="btn btn-primary approve" data-dos_id="{{$item->id}}" data-id_dos="{{$item->id_dos}}"> Terima </a>
                                     <button class="btn btn-danger decline" data-dos_id="{{$item->id}}" data-id_dos="{{$item->id_dos}}"> Tolak </a>
-                                </td>
+                                </td> --}}
 
                             </tr>
                         @endforeach

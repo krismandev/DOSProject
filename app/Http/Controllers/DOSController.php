@@ -17,14 +17,22 @@ class DOSController extends Controller
 {
     public function reportDOS()
     {
-        $spv_ids = Spv::where("pic_id",auth()->user()->id)->pluck("id");
-        // dd($spv_ids);
-        $user_sf_ids = SalesForce::whereIn("spv_id",$spv_ids)->pluck("user_id");
-        // dd($user_sf_ids);
-        $tanggal = date("Y-m-d");
-        $data = Dos::whereIn("user_id",$user_sf_ids)->orderBy("created_at","desc")->whereDate("created_at","=",$tanggal);
-        $jumlah = $data->count();
-        $dos = $data->get();
+        if (auth()->user()->role == "admin") {
+            $tanggal = date("Y-m-d");
+            $data = Dos::orderBy("created_at","desc")->whereDate("created_at","=",$tanggal);
+            $jumlah = $data->count();
+            $dos = $data->get();
+        }else{
+            $spv_ids = Spv::where("pic_id",auth()->user()->id)->pluck("id");
+            // dd($spv_ids);
+            $user_sf_ids = SalesForce::whereIn("spv_id",$spv_ids)->pluck("user_id");
+            // dd($user_sf_ids);
+            $tanggal = date("Y-m-d");
+            $data = Dos::whereIn("user_id",$user_sf_ids)->orderBy("created_at","desc")->whereDate("created_at","=",$tanggal);
+            $jumlah = $data->count();
+            $dos = $data->get();
+        }
+
         return view("dashboard.dos.reportDos",compact(["dos","jumlah","tanggal"]));
     }
 
