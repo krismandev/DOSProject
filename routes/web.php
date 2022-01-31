@@ -38,7 +38,6 @@ Route::group(['middleware' => ['auth','checkRole:pic,spv']], function(){
 
 
 Route::group(['middleware' => ['auth','checkRole:pic']], function(){
-    Route::get("/laporan_dos","DOSController@reportDOS")->name("reportDOS");
     Route::get("/laporan_dos/approve/{id}","DOSController@approveDOS")->name("approveDOS");
     Route::get("/laporan_dos/decline/{id}","DOSController@declineDOS")->name("declineDOS");
 });
@@ -47,6 +46,7 @@ Route::group(['middleware' => ['auth','checkRole:pic']], function(){
 Route::group(['middleware' => ['auth','checkRole:pic,admin']], function(){
     Route::get('/maps','MapsController@getMaps')->name('getMaps');
 
+    Route::get("/laporan_dos","DOSController@reportDOS")->name("reportDOS");
     Route::group(['prefix' => 'dashboard'],function(){
         Route::get('/dos_per_spv','DashboardDataController@dashDosPerSpv')->name('dashDosPerSpv');
         Route::get('/dos_per_spv/filter','DashboardDataController@dashDosPerSpvFiltered')->name('dashDosPerSpvFiltered');
