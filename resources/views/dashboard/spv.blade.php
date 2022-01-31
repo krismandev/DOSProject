@@ -35,7 +35,7 @@
                     <td>{{$spv->kode}}</td>
                     <td>{{$spv->spv->agency->name}}</td>
                     <td>
-                        <button class="btn btn-info edit-spv" data-toggle="modal" data-target="#editSpv"
+                        <button class="btn btn-warning edit-spv" data-toggle="modal" data-target="#editSpv"
                             data-user_id="{{$spv->id}}"
                             data-name="{{$spv->name}}"
                             data-kode="{{$spv->kode}}"
@@ -175,34 +175,7 @@
 
 @endsection
 @section("linkfooter")
-@if (session("error"))
-    <script>
-            $(document).Toasts('create', {
-                class: 'bg-danger',
-                title: 'Error',
-                body: '{{session("error")}}'
-            })
-    </script>
-@endif
-@if ($errors->any())
-    @php
-        $message = '';
-    @endphp
-    @foreach ($errors->all() as $error)
-        @php
-            $message .= $error.", ";
-        @endphp
-    @endforeach
 
-    <script>
-        $(document).Toasts('create', {
-            class: 'bg-danger',
-            title: 'Berhasil',
-            body: '{{$message}}'
-        })
-    </script>
-
-@endif
 <script>
     $(document).ready(function () {
         $(".edit-spv").click(function (e) {

@@ -24,4 +24,18 @@ class AgencyController extends Controller
         ]);
         return redirect()->back()->with("success","Berhasil menambah data");
     }
+
+    public function updateAgency(Request $request)
+    {
+        $request->validate([
+            "name"=>"required",
+            "agency_id"=>"required",
+        ]);
+
+        $agency=Agency::find($request->agency_id);
+        $agency->update([
+            "name"=>$request->name
+        ]);
+        return back()->with("success","Berhasil memperbarui data");
+    }
 }

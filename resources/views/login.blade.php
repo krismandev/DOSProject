@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Log in</title>
+  <title>DOS Witel Jambi | Log in</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -21,7 +21,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
+    <a href="../../index2.html"><b>Dicipline Operational Sales Force</b></a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
@@ -63,7 +63,7 @@
         </div>
       </form>
 
-      <div class="social-auth-links text-center mb-3">
+      {{-- <div class="social-auth-links text-center mb-3">
         <p>- OR -</p>
         <a href="#" class="btn btn-block btn-primary">
           <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
@@ -79,7 +79,7 @@
       </p>
       <p class="mb-0">
         <a href="register.html" class="text-center">Register a new membership</a>
-      </p>
+      </p> --}}
     </div>
     <!-- /.login-card-body -->
   </div>
@@ -92,6 +92,37 @@
 <script src="{{asset('asset_dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('asset_dashboard/dist/js/adminlte.min.js')}}"></script>
+<script src="{{asset('asset_dashboard/plugins/toastr/toastr.min.js')}}"></script>
+@if (session("error"))
+    <script>
+            $(document).Toasts('create', {
+                class: 'bg-danger',
+                title: 'Error',
+                body: '{{session("error")}}'
+            })
+    </script>
+@endif
+
+@if ($errors->any())
+    @php
+        // dd($errors->all());
+        $message = '';
+    @endphp
+    @foreach ($errors->all() as $error)
+        @php
+            $message .= $error.", ";
+        @endphp
+    @endforeach
+
+    <script>
+        $(document).Toasts('create', {
+            class: 'bg-danger',
+            title: 'Error',
+            body: '{{$message}}'
+        })
+    </script>
+
+@endif
 
 </body>
 </html>

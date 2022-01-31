@@ -19,6 +19,10 @@ class AuthController extends Controller
         $creds = $request->only(['kode','password']);
         if ($token = JWTAuth::attempt($creds)){
             $user = Auth::user();
+            if ($user->role != "sf") {
+                $message = ResponseMessage::NOT_ALLOWED;
+                return ResponseUtility::makeResponse(null,$message,200);
+            }
             $data = [
                 "token"=>$token,
                 "user"=>$user

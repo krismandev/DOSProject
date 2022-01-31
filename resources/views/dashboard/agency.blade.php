@@ -39,7 +39,10 @@
                   <td>{{$loop->iteration}}</td>
                   <td>{{$agency->name}}</td>
                   <td>
-                      <button class="btn btn-warning">Edit</button>
+                      <button class="btn btn-warning edit-agency"
+                      data-toggle="modal" data-target="#editModal"
+                      data-agency_id="{{$agency->id}}"
+                      data-name="{{$agency->name}}">Edit</button>
                   </td>
                 </tr>
                 @endforeach
@@ -58,7 +61,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Tambah data SF</h4>
+                <h4 class="modal-title">Tambah data agency</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">×</span>
                 </button>
@@ -82,23 +85,45 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+<div id="editModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit data Agency</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+            <div class="modal-body">
+                <form role="form" method="POST" action="{{route('updateAgency')}}">
+                    @csrf @method("PATCH")
+                      <div class="form-group">
+                        <label for="name">Nama Agensi</label>
+                        <input type="hidden" name="agency_id" id="agency_id_update">
+                        <input type="text" name="name" class="form-control" id="name_update" placeholder="Masukkan nama">
+                      </div>
+                    <!-- /.card-body -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Tutup</button>
+                <button type="submit" class="btn btn-info waves-effect">Simpan</button>
+            </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 @endsection
 @section("linkfooter")
 <script type="text/javascript">
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000
-        });
+    $(".edit-agency").click(function (e) {
+        const agency_id = $(this).data("agency_id")
+        const agency_name = $(this).data("name")
 
-        function showAlertSuccess(message) {
-            $('.swalDefaultSuccess').click(function() {
-                Toast.fire({
-                    icon: 'success',
-                    title: message
-                })
-            });
-        }
+        $("#name_update").val(agency_name)
+        $("#agency_id_update").val(agency_id)
+
+    });
 </script>
 @endsection

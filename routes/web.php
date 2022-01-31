@@ -74,6 +74,10 @@ Route::group(['middleware' => ['auth','checkRole:pic,admin']], function(){
 
     });
 
+    Route::group(['prefix' => 'odp'],function(){
+        Route::get('/','OdpController@getOdp')->name('getOdp');
+        Route::post('/','OdpController@importOdp')->name('importOdp');
+    });
 });
 
 
@@ -93,11 +97,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function(){
     Route::group(['prefix' => 'agencies'],function(){
         Route::get('/','AgencyController@getAgency')->name('getAgency');
         Route::post('/','AgencyController@storeAgency')->name('storeAgency');
-    });
-
-    Route::group(['prefix' => 'odp'],function(){
-        Route::get('/','OdpController@getOdp')->name('getOdp');
-        Route::post('/','OdpController@importOdp')->name('importOdp');
+        Route::patch('/','AgencyController@updateAgency')->name('updateAgency');
     });
 
     Route::group(['prefix' => 'pic'],function(){
