@@ -29,7 +29,8 @@ class DOSController extends Controller
             "long"=>"required",
             "lat"=>"required",
             "odp"=>"required_if:produk,==,INDIHOME",
-            "keterangan_kunjungan"=>"required|in:SUDAH PAKAI KOMPETITOR,PIKIR2 KEMBALI,RUMAH KOSONG,TIDAK BERPENGHUNI,KEBERATAN DENGAN HARGA,DEAL,SUDAH BERLANGGANAN",
+            // "keterangan_kunjungan"=>"required|in:SUDAH PAKAI KOMPETITOR,PIKIR2 KEMBALI,RUMAH KOSONG,TIDAK BERPENGHUNI,KEBERATAN DENGAN HARGA,DEAL,SUDAH BERLANGGANAN",
+            "keterangan_kunjungan"=>"required|in:BELUM BERTEMU PENGHUNI RUMAH,BELUM BERPENGHUNI,DIPERTIMBANGKAN CALANG,FAKTOR DAYA BELI (EKONOMI),LEBIH TERTARIK KE KOMPETITOR,DEAL TRANSAKSI,SUDAH BERLANGGANAN KOMPETITOR,TIDAK BUTUH INTERNET",
             "keterangan_tambahan"=>"nullable",
             "foto"=>"required|file|image",
         ]);
@@ -71,7 +72,7 @@ class DOSController extends Controller
                 // $path = $request->file("foto")->storeAs("public/foto_dos",$filenameSave);
             }
 
-            if ($request->keterangan_kunjungan == "RUMAH KOSONG" || $request->keterangan_kunjungan == "TIDAK BERPENGHUNI") {
+            if ($request->keterangan_kunjungan == "BELUM BERTEMU PENGHUNI RUMAH" || $request->keterangan_kunjungan == "BELUM BERPENGHUNI") {
                 $status_kunjungan = "TIDAK BERTEMU";
             }else{
                 $status_kunjungan = "BERTEMU";
