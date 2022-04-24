@@ -203,6 +203,7 @@ class DOSController extends Controller
         $user = Auth::user();
         $sf = SalesForce::where("user_id",$user->id)->first();
 
+        $arr_kelurahan = ["Pilih Kelurahan"];
         $kelurahan_today = SalesPlan::select("sales_plans.*","sales_plan_spvs.id AS sales_plan_spv_id", "sales_plan_spvs.sales_plan_id","sales_plan_spvs.spv_id","sales_plan_kelurahans.kelurahan_id","kelurahans.gab")
             ->join("sales_plan_spvs","sales_plan_spvs.sales_plan_id","=","sales_plans.id")
             ->join("sales_plan_kelurahans","sales_plan_kelurahans.sales_plan_id","=","sales_plans.id")
@@ -212,8 +213,11 @@ class DOSController extends Controller
             ->pluck("gab");
         // dd($kelurahan_today);
         $kelurahan_today = $kelurahan_today->toArray();
+        foreach($kelurahan_today as $i => $value){
+            $arr_kelurahan[] = $value;
+        }
         array_push($kelurahan_today,"Pilih Kelurahan");
         $message = ResponseMessage::SUCCESS;
-        return ResponseUtility::makeResponse($kelurahan_today,$message,200);
+        return ResponseUtility::makeResponse($arr_kelurahan,$message,200);
     }
 }
