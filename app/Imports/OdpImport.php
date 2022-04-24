@@ -21,6 +21,7 @@ class OdpImport implements ToModel, WithStartRow, WithCalculatedFormulas
     {
         // if (strpos($row[2],"ODP")) {
             if ($row[2] != null || $row[2] != "") {
+                dd($row);
                 if (!Odp::where("nama_odp",$row[2])->exists()) {
                     $date = intval($row[8]);
                     $odp = new Odp([

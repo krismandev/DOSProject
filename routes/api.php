@@ -28,3 +28,5 @@ Route::get("/dos_today/{id}","API\DOSController@getDetailDos")->middleware("jwtA
 Route::get("/logout","API\AuthController@logout")->middleware("jwtAuth");
 
 Route::post("/change_password","API\AuthController@changePassword")->middleware("jwtAuth");
+
+Route::get("/kelurahan-sales-plan","API\DOSController@getKelurahanToday")->middleware("jwtAuth");

@@ -28,6 +28,11 @@ class Spv extends Model
         return $this->belongsTo(Agency::class);
     }
 
+    public function sales_plan_spv()
+    {
+        return $this->hasMany(SalesPlanSpv::class,'spv_id','id');
+    }
+
     public function jumlahSf()
     {
         $total = SalesForce::where("spv_id",$this->id)->count();

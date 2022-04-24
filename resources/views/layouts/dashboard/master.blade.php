@@ -27,6 +27,10 @@
   <link rel="stylesheet" href="{{asset('css/jquery.fancybox.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="{{asset('asset_dashboard/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{asset('asset_dashboard/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
   @yield("linkheader")
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -237,10 +241,17 @@
 
 <script src="{{asset('asset_dashboard/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
 <script src="{{asset('asset_dashboard/plugins/toastr/toastr.min.js')}}"></script>
+
+<script src="{{asset('asset_dashboard/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('asset_dashboard/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('asset_dashboard/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{asset('asset_dashboard/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+{{-- <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script> --}}
 <script src="{{asset('js/jquery.fancybox.min.js')}}"></script>
 <script src="https://kit.fontawesome.com/ba5890d42b.js" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 
 @if (session("success"))
     <script>
@@ -282,5 +293,9 @@
 
 @endif
 @yield("linkfooter")
+<script>
+    $("select").select2();
+    // $("select[name='kelurahan_id[]']").select2();
+</script>
 </body>
 </html>

@@ -69,14 +69,22 @@ Route::group(['middleware' => ['auth','checkRole:pic,admin']], function(){
     });
 
     Route::group(['prefix' => 'sales_plan'],function(){
-        Route::get('/','PenugasanController@getPenugasan')->name('getPenugasan');
-        Route::post('/','PenugasanController@storePenugasan')->name('storePenugasan');
+        Route::get('/','SalesPlanController@getSalesPlan')->name('getSalesPlan');
+        Route::get('/create','SalesPlanController@createSalesPlan')->name('createSalesPlan');
+        Route::post('/','SalesPlanController@storeSalesPlan')->name('storeSalesPlan');
+
+        Route::get('/add-kelurahan','SalesPlanController@addKelurahan')->name('addKelurahan');
 
     });
 
     Route::group(['prefix' => 'odp'],function(){
         Route::get('/','OdpController@getOdp')->name('getOdp');
         Route::post('/','OdpController@importOdp')->name('importOdp');
+    });
+
+    Route::group(['prefix' => 'kelurahan'],function(){
+        Route::get('/','KelurahanController@getKelurahan')->name('getKelurahan');
+        Route::post('/','KelurahanController@importKelurahan')->name('importKelurahan');
     });
 });
 

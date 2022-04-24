@@ -131,24 +131,42 @@
 
 
 
-        $("#awal").datepicker({
-            dateFormat: "yy-mm-dd",
-            onSelect: function(dateText){
-                // console.log("Selected date: " + dateText + "; input's current value: ");
-                tanggal_awal = dateText;
-                $("#dos_table").DataTable().destroy();
-                renderTable();
-            }
-        })
+        // $("#awal").datepicker({
+        //     dateFormat: "yy-mm-dd",
+        //     onSelect: function(dateText){
+        //         // console.log("Selected date: " + dateText + "; input's current value: ");
+        //         tanggal_awal = dateText;
+        //         $("#dos_table").DataTable().destroy();
+        //         renderTable();
+        //     }
+        // })
 
-        $("#akhir").datepicker({
-            dateFormat: "yy-mm-dd",
-            onSelect: function(dateText){
-                tanggal_akhir = dateText;
-                $("#dos_table").DataTable().destroy();
-                renderTable();
-            }
-        })
+        // $("#akhir").datepicker({
+        //     dateFormat: "yy-mm-dd",
+        //     onSelect: function(dateText){
+        //         tanggal_akhir = dateText;
+        //         $("#dos_table").DataTable().destroy();
+        //         renderTable();
+        //     }
+        // })
+
+        $("input[name='awal']").change(function (e) {
+            e.preventDefault();
+            // alert($(this).val())
+            let tanggal_selected = $(this).val()
+            tanggal_awal = tanggal_selected
+            $("#dos_table").DataTable().destroy();
+            renderTable();
+        });
+
+        $("input[name='akhir']").change(function (e) {
+            e.preventDefault();
+            // alert($(this).val())
+            let tanggal_selected = $(this).val()
+            tanggal_akhir = tanggal_selected
+            $("#dos_table").DataTable().destroy();
+            renderTable();
+        });
 
 
         function renderTable(){
