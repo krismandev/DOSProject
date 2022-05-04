@@ -30,7 +30,7 @@ class DOSController extends Controller
             "produk"=>"required|in:INDIHOME,ORBIT,HSI",
             "long"=>"required",
             "lat"=>"required",
-            "odp"=>"required_if:produk,==,INDIHOME",
+            // "odp"=>"required_if:produk,==,INDIHOME",
             "gab_kelurahan"=>"required",
             // "keterangan_kunjungan"=>"required|in:SUDAH PAKAI KOMPETITOR,PIKIR2 KEMBALI,RUMAH KOSONG,TIDAK BERPENGHUNI,KEBERATAN DENGAN HARGA,DEAL,SUDAH BERLANGGANAN",
             "keterangan_kunjungan"=>"required|in:BELUM BERTEMU PENGHUNI,RUMAH BELUM BERPENGHUNI,DIPERTIMBANGKAN CALANG,FAKTOR DAYA BELI (EKONOMI),LEBIH TERTARIK KE KOMPETITOR,DEAL TRANSAKSI,SUDAH BERLANGGANAN KOMPETITOR,TIDAK BUTUH INTERNET",
@@ -90,7 +90,7 @@ class DOSController extends Controller
                 "produk"=>$request->produk,
                 "long"=>$request->long,
                 "lat"=>$request->lat,
-                "odp"=>$request->odp,
+                // "odp"=>$request->odp,
                 "status_kunjungan"=>$status_kunjungan,
                 "keterangan_kunjungan"=>$request->keterangan_kunjungan,
                 "keterangan_tambahan"=>$request->keterangan_tambahan ?? null,
@@ -106,7 +106,7 @@ class DOSController extends Controller
                 "tanggal"=>$dos->tanggal,
                 "longitude"=>$dos->long,
                 "latitude"=>$dos->lat,
-                "odp"=>$dos->odp,
+                "gab_kelurahan"=>$dos->gab_kelurahan,
                 "produk"=>$dos->produk,
                 "kkontak"=>$user->kode,
                 "status_kunjungan"=>$dos->status_kunjungan,
@@ -177,7 +177,7 @@ class DOSController extends Controller
                         "Tanggal: ".$data["tanggal"]. " \n ".
                         "Longitue: ".$data["longitude"]. " \n ".
                         "Latitude: ".$data["latitude"]. " \n ".
-                        "ODP: ".$data["odp"]. " \n ".
+                        "Kelurahan: ".$data["gab_kelurahan"]. " \n ".
                         "Produk: ".$data["produk"]. " \n ".
                         "KKontak: ".$data["kkontak"]. " \n ".
                         "Status Kunjungan: ".$data["status_kunjungan"]. " \n ".
