@@ -88,11 +88,13 @@ class DashboardDataController extends Controller
         foreach ($sales_forces as $sf) {
             $sf->bertemu = $sf->user->jumlahDosByStatusKunjungan("BERTEMU",$awal,$akhir);
             $sf->tidak_bertemu = $sf->user->jumlahDosByStatusKunjungan("TIDAK BERTEMU",$awal,$akhir);
-            $sf->tidak_berminat = $sf->user->jumlahDosByKeteranganKunjungan("TIDAK BERMINAT",$awal, $akhir);
-            $sf->sudah_pakai_kompetitor = $sf->user->jumlahDosByKeteranganKunjungan("SUDAH PAKAI KOMPETITOR",$awal, $akhir);
-            $sf->pikir2_kembali = $sf->user->jumlahDosByKeteranganKunjungan("PIKIR2 KEMBALI",$awal, $akhir);
-            $sf->keberatan_dengan_harga = $sf->user->jumlahDosByKeteranganKunjungan("KEBERATAN DENGAN HARGA",$awal, $akhir);
-            $sf->deal = $sf->user->jumlahDosByKeteranganKunjungan("DEAL",$awal, $akhir);
+            $sf->belum_bertemu_penghuni = $sf->user->jumlahDosByKeteranganKunjungan("BELUM BERTEMU PENGHUNI",$awal, $akhir);
+            $sf->rumah_belum_berpenghuni = $sf->user->jumlahDosByKeteranganKunjungan("RUMAH BELUM BERPENGHUNI",$awal, $akhir);
+            $sf->dipertimbangkan_calang = $sf->user->jumlahDosByKeteranganKunjungan("DIPERTIMBANGKAN CALANG",$awal, $akhir);
+            $sf->faktor_daya_beli = $sf->user->jumlahDosByKeteranganKunjungan("FAKTOR DAYA BELI (EKONOMI)",$awal, $akhir);
+            $sf->tidak_butuh_internet = $sf->user->jumlahDosByKeteranganKunjungan("TIDAK BUTUH INTERNET",$awal, $akhir);
+            $sf->sudah_berlangganan_kompetitor = $sf->user->jumlahDosByKeteranganKunjungan("SUDAH BERLANGGANAN KOMPETITOR",$awal, $akhir);
+            $sf->deal_transaksi = $sf->user->jumlahDosByKeteranganKunjungan("DEAL TRANSAKSI",$awal, $akhir);
         }
         return response()->json($sales_forces);
     }

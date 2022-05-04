@@ -237,12 +237,14 @@
                 <thead>
                   <tr class="row-purple">
                     <th style="width: 10px">SPV</th>
-                    <th>TIDAK BERMINAT</th>
-                    <th>SUDAH PAKAI KOMPETITOR</th>
-                    <th>PIKIR2 KEMBALI</th>
-                    <th>KEBERATAN DENGAN HARGA</th>
-                    <th>DEAL</th>
-                    <th>SUDAH BERLANGGANAN</th>
+                    <th>BELUM BERTEMU PENGHUNI</th>
+                    <th>RUMAH BELUM BERPENGHUNI</th>
+                    <th>DIPERTIMBANGKAN CALANG</th>
+                    <th>FAKTOR DAYA BELI (EKONOMI)</th>
+                    <th>LEBIH TERTARIK KE KOMPETITOR</th>
+                    <th>TIDAK BUTUH INTERNET</th>
+                    <th>SUDAH BERLANGGANAN KOMPETITOR</th>
+                    <th>DEAL TRANSAKSI</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -252,22 +254,28 @@
                                 {{$item->name}}
                             </td>
                             <td>
-                                {{$item->jumlahByKeteranganKunjungan("TIDAK BERMINAT",$awal,$akhir)}}
+                                {{$item->jumlahByKeteranganKunjungan("BELUM BERTEMU PENGHUNI",$awal,$akhir)}}
                             </td>
                             <td>
-                                {{$item->jumlahByKeteranganKunjungan("SUDAH PAKAI KOMPETITOR",$awal,$akhir)}}
+                                {{$item->jumlahByKeteranganKunjungan("RUMAH BELUM BERPENGHUNI",$awal,$akhir)}}
                             </td>
                             <td>
-                                {{$item->jumlahByKeteranganKunjungan("PIKIR2 KEMBALI",$awal,$akhir)}}
+                                {{$item->jumlahByKeteranganKunjungan("DIPERTIMBANGKAN CALANG",$awal,$akhir)}}
                             </td>
                             <td>
-                                {{$item->jumlahByKeteranganKunjungan("KEBERATAN DENGAN HARGA",$awal,$akhir)}}
+                                {{$item->jumlahByKeteranganKunjungan("FAKTOR DAYA BELI (EKONOMI)",$awal,$akhir)}}
                             </td>
                             <td>
-                                {{$item->jumlahByKeteranganKunjungan("DEAL",$awal,$akhir)}}
+                                {{$item->jumlahByKeteranganKunjungan("LEBIH TERTARIK KE KOMPETITOR",$awal,$akhir)}}
                             </td>
                             <td>
-                                {{$item->jumlahByKeteranganKunjungan("SUDAH BERLANGGANAN",$awal,$akhir)}}
+                                {{$item->jumlahByKeteranganKunjungan("TIDAK BUTUH INTERNET",$awal,$akhir)}}
+                            </td>
+                            <td>
+                                {{$item->jumlahByKeteranganKunjungan("SUDAH BERLANGGANAN KOMPETITOR",$awal,$akhir)}}
+                            </td>
+                            <td>
+                                {{$item->jumlahByKeteranganKunjungan("DEEAL TRANSAKSI",$awal,$akhir)}}
                             </td>
                         </tr>
                     @endforeach
@@ -311,11 +319,13 @@
                     <th style="background-color: #ffb13d;">KKONTAK SF</th>
                     <th style="background-color: #804f01;">BERTEMU</th>
                     <th style="background-color: #804f01;">TIDAK BERTEMU</th>
-                    <th style="background-color: #f76da8;">TIDAK BERMINAT</th>
-                    <th style="background-color: #f76da8;">SUDAH PAKAI KOMPETITOR</th>
-                    <th style="background-color: #f76da8;">PIKIR2 KEMBALI</th>
-                    <th style="background-color: #f76da8;">KEBERATAN DENGAN HARGA</th>
-                    <th style="background-color: #f76da8;">DEAL</th>
+                    <th style="background-color: #f76da8;">BELUM BERTEMU PENGHUNI</th>
+                    <th style="background-color: #f76da8;">RUMAH BELUM BERPENGHUNI</th>
+                    <th style="background-color: #f76da8;">DIPERTIMBANGKAN CALANG</th>
+                    <th style="background-color: #f76da8;">FAKTOR DAYA BELI (EKONOMI)</th>
+                    <th style="background-color: #f76da8;">TIDAK BUTUH INTERNET</th>
+                    <th style="background-color: #f76da8;">SUDAH BERLANGGANAN KOMPETITOR</th>
+                    <th style="background-color: #f76da8;">DEAL TRANSAKSI</th>
                   </tr>
                 </thead>
                 <tbody id="tbody_detail_dos">
@@ -396,11 +406,13 @@
                           row += `<td> ${v.kode} </td>`
                           row += `<td style="background-color: #804f01; color: white;"> ${v.bertemu} </td>`
                           row += `<td style="background-color: #804f01; color: white;"> ${v.tidak_bertemu} </td>`
-                          row += `<td> ${v.tidak_berminat} </td>`
-                          row += `<td> ${v.sudah_pakai_kompetitor} </td>`
-                          row += `<td> ${v.pikir2_kembali} </td>`
-                          row += `<td> ${v.keberatan_dengan_harga} </td>`
-                          row += `<td> ${v.deal} </td>`
+                          row += `<td> ${v.belum_bertemu_penghuni} </td>`
+                          row += `<td> ${v.rumah_belum_berpenghuni} </td>`
+                          row += `<td> ${v.dipertimbangkan_calang} </td>`
+                          row += `<td> ${v.faktor_daya_beli} </td>`
+                          row += `<td> ${v.tidak_butuh_internet} </td>`
+                          row += `<td> ${v.sudah_berlangganan_kompetitor} </td>`
+                          row += `<td> ${v.deal_transaksi} </td>`
                         row += '</tr>'
 
                         $("#tbody_detail_dos").append(row);
