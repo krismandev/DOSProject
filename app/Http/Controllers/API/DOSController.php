@@ -31,8 +31,9 @@ class DOSController extends Controller
             "long"=>"required",
             "lat"=>"required",
             "odp"=>"required_if:produk,==,INDIHOME",
+            "gab_kelurahan"=>"required",
             // "keterangan_kunjungan"=>"required|in:SUDAH PAKAI KOMPETITOR,PIKIR2 KEMBALI,RUMAH KOSONG,TIDAK BERPENGHUNI,KEBERATAN DENGAN HARGA,DEAL,SUDAH BERLANGGANAN",
-            "keterangan_kunjungan"=>"required|in:BELUM BERTEMU PENGHUNI RUMAH,BELUM BERPENGHUNI,DIPERTIMBANGKAN CALANG,FAKTOR DAYA BELI (EKONOMI),LEBIH TERTARIK KE KOMPETITOR,DEAL TRANSAKSI,SUDAH BERLANGGANAN KOMPETITOR,TIDAK BUTUH INTERNET",
+            "keterangan_kunjungan"=>"required|in:BELUM BERTEMU PENGHUNI,RUMAH BELUM BERPENGHUNI,DIPERTIMBANGKAN CALANG,FAKTOR DAYA BELI (EKONOMI),LEBIH TERTARIK KE KOMPETITOR,DEAL TRANSAKSI,SUDAH BERLANGGANAN KOMPETITOR,TIDAK BUTUH INTERNET",
             "keterangan_tambahan"=>"nullable",
             "foto"=>"required|file|image",
         ]);
@@ -40,7 +41,6 @@ class DOSController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->messages(), 200);
         }
-
 
 
         try {
@@ -74,7 +74,7 @@ class DOSController extends Controller
                 // $path = $request->file("foto")->storeAs("public/foto_dos",$filenameSave);
             }
 
-            if ($request->keterangan_kunjungan == "BELUM BERTEMU PENGHUNI RUMAH" || $request->keterangan_kunjungan == "BELUM BERPENGHUNI") {
+            if ($request->keterangan_kunjungan == "BELUM BERTEMU PENGHUNI" || $request->keterangan_kunjungan == "RUMAH BELUM BERPENGHUNI") {
                 $status_kunjungan = "TIDAK BERTEMU";
             }else{
                 $status_kunjungan = "BERTEMU";
@@ -95,7 +95,8 @@ class DOSController extends Controller
                 "keterangan_kunjungan"=>$request->keterangan_kunjungan,
                 "keterangan_tambahan"=>$request->keterangan_tambahan ?? null,
                 "status"=>"approved",
-                "id_dos"=>$id_dos
+                "id_dos"=>$id_dos,
+                "gab_kelurahan"=>$request->gab_kelurahan
             ]);
 
 
